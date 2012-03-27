@@ -26,8 +26,7 @@ public class OfficialSetup implements Setup {
 	 */
 	@Override
 	public void init(NutConfig nc) {
-		// TODO Auto-generated method stub
-
+		String mode = nc.getInitParameter("mode");
 	}
 
 }

@@ -11,6 +11,10 @@
 			<param-name>modules</param-name>
 			<param-value>org.scauhci.official.MainModule</param-value>
 		</init-param>
+		<init-param>
+			<param-name>mode</param-name>
+			<param-value>development</param-value>
+		</init-param>
 	</filter>
 	
 	<filter-mapping>
