@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body, html {
+    width: 100%;
+    font: 13px "Microsoft YaHei";
+}
+ul,ol {
+    list-style: none;
+}
+a {
+    color: #21759B;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+#outer {
+    height: 100%;
+    padding-top: 40px;
+}
+#sidebar {
+    background: #ECECEC;
+    border-right: 1px solid #CCC;
+    width: 150px;
+    box-shadow: 0px 0px 5px #999;
+    position: absolute;
+    top: 60px;
+    left: 30px;
+    border-radius: 0 0 5px 5px;
+}
+#sidebar #menu {
+    padding: 40px 0;
+}
+.menu-sub {
+    display: none;
+}
+.menu-btn {
+    display: block;
+    height: 30px;
+    width: 120px;
+    border-bottom: 1px solid #DFDFDF;
+    border-top: 1px solid #F9F9F9;
+    line-height: 30px;
+    padding-left: 25px }
+.menu-btn:hover {
+    color: #D54E21 }
+.menu-sub {
+    background: #FFF;
+}
+.menu-sub li a {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-weight: normal;
+    width: 120px;
+    padding-left: 25px;
+    background: #FCFCFC;
+    font-size: 13px;
+}
+.menu-sub li a:hover {
+    background-color: #EAF2FA;
+    color: #000;
+}
+.menu-sub li a.current {
+    font-weight: bold;
+}
+
+
