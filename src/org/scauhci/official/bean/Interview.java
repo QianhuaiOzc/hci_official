@@ -1,18 +1,26 @@
 package org.scauhci.official.bean;
 
-/**
-* 
-*/
-public class Interview {
+import org.nutz.mongo.annotation.*;
 
+@Co
+public class Interview {
+	@CoId
 	private int id;
+	@CoField
 	private String studentId;
+	@CoField
 	private String name;
+	@CoField
 	private int grade;
+	@CoField
 	private String academy;
+	@CoField
 	private String major;
+	@CoField
 	private int clazz;
+	@CoField
 	private String content;
+	@CoField
 	private java.util.Date date;
 
 	public int getId() {

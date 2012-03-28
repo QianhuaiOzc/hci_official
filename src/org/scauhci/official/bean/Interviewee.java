@@ -5,7 +5,7 @@ import org.nutz.mongo.annotation.CoField;
 import org.nutz.mongo.annotation.CoId;
 
 @Co
-public class Interviewer {
+public class Interviewee {
 	@CoId
 	private int id;
 	@CoField

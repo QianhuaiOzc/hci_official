@@ -9,7 +9,6 @@ import org.nutz.mvc.annotation.GET;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
-import org.scauhci.official.bean.Member;
 import org.scauhci.official.service.MemberService;
 
 @IocBean
@@ -23,8 +22,6 @@ public class MemberModule {
 	@Ok("jsp:page.manage.member.edit")
 	public void eidt(@Param("id") Integer id, HttpServletRequest req){
 		if(id!=null){
-			 Member m= memberService.get(id);
-	         req.setAttribute("member", m);			
 		}
 	}
 	
