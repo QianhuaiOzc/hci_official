@@ -1,16 +1,9 @@
-/**
- * 
- */
 package org.scauhci.official.bean;
 
 import org.nutz.mongo.annotation.Co;
 import org.nutz.mongo.annotation.CoField;
 import org.nutz.mongo.annotation.CoId;
 
-/**
- * @author clarenceau
- * 
- */
 @Co
 public class Log {
 	@CoId

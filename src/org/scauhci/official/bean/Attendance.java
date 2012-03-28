@@ -2,54 +2,28 @@ package org.scauhci.official.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-
-
-/**
-* 
-*/
-
 @Table("attendance")
 public class Attendance {
 
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("meeting_id")
 	private Integer meetingId;
-	/**
-	 * 
-	 */
 	@Column("member_id")
 	private Integer memberId;
-	/**
-	 * 
-	 */
 	@Column("state")
 	private Integer state;
-	/**
-	 * 
-	 */
 	@Column("reason")
 	private String reason;
-	/**
-	 * 
-	 */
 	@Column("is_attend")
 	private Integer isAttend;
-	
-	
+
 	@One(target = Member.class, field = "memberId")
-    private Member member;
-	
+	private Member member;
+
 	@One(target = Meeting.class, field = "meetingId")
-    private Meeting meeting;
+	private Meeting meeting;
 
 	public Integer getId() {
 		return id;
@@ -114,7 +88,5 @@ public class Attendance {
 	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
 	}
-	
-	
-	
+
 }

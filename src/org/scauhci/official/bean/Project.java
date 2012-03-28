@@ -4,69 +4,37 @@ import java.util.List;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-
-/**
-* 
-*/
-
 @Table("project")
 public class Project {
-
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("name")
 	private String name;
-	/**
-	 * 
-	 */
 	@Column("detail")
 	private String detail;
-	/**
-	 * 
-	 */
 	@Column("state_date")
 	private java.util.Date stateDate;
-	/**
-	 * 
-	 */
 	@Column("end_date")
 	private java.util.Date endDate;
-	/**
-	 * 
-	 */
 	@Column("state")
 	private Integer state;
-	/**
-	 * 
-	 */
 	@Column("is_public")
 	private Integer isPublic;
-	/**
-	 * 
-	 */
 	@Column("department_id")
 	private Integer departmentId;
-	
-	
+
 	@Many(target = Report.class, field = "projectId")
-    private List<Report> reports;
-	
+	private List<Report> reports;
+
 	@Many(target = ProjectMember.class, field = "projectId")
-    private List<ProjectMember> projectMembers;
-	
+	private List<ProjectMember> projectMembers;
+
 	@ManyMany(target = Member.class, relation = "project_member", from = "projectId", to = "memberId")
-    private List<Member> members;
-	
+	private List<Member> members;
+
 	@One(target = Department.class, field = "departmentId")
-    private Department department;
+	private Department department;
 
 	public Integer getId() {
 		return id;
@@ -163,6 +131,5 @@ public class Project {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	
-	
+
 }

@@ -2,34 +2,19 @@ package org.scauhci.official.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-
-/**
-* 
-*/
-
 @Table("report_file")
 public class ReportFile {
 
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("report_id")
 	private Integer reportId;
-	/**
-	 * 
-	 */
 	@Column("file_id")
 	private Integer fileId;
-	
+
 	@One(target = Report.class, field = "reportId")
-    private Report report;
+	private Report report;
 
 	public Integer getId() {
 		return id;
@@ -62,6 +47,5 @@ public class ReportFile {
 	public void setReport(Report report) {
 		this.report = report;
 	}
-	
-	
+
 }

@@ -2,94 +2,43 @@ package org.scauhci.official.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-
-/**
-* 
-*/
-
 @Table("member_extend")
 public class MemberExtend {
 
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("member_id")
 	private Integer memberId;
-	/**
-	 * 
-	 */
 	@Column("sex")
 	private Integer sex;
-	/**
-	 * 
-	 */
 	@Column("familyaddress")
 	private String familyaddress;
-	/**
-	 * 
-	 */
 	@Column("nativeplace")
 	private String nativeplace;
-	/**
-	 * 
-	 */
 	@Column("folk")
 	private String folk;
-	/**
-	 * 
-	 */
 	@Column("card_id")
 	private String cardId;
-	/**
-	 * 
-	 */
 	@Column("homepage")
 	private String homepage;
-	/**
-	 * 
-	 */
 	@Column("birthday")
 	private java.util.Date birthday;
-	/**
-	 * 
-	 */
 	@Column("email")
 	private String email;
-	/**
-	 * 
-	 */
 	@Column("mobile")
 	private String mobile;
-	/**
-	 * 
-	 */
 	@Column("mobileshort")
 	private String mobileshort;
-	/**
-	 * 
-	 */
 	@Column("grade")
 	private Integer grade;
-	/**
-	 * 
-	 */
 	@Column("academy")
 	private String academy;
-	/**
-	 * 
-	 */
 	@Column("major")
 	private String major;
-	
+
 	@One(target = Member.class, field = "memberId")
-    private Member member;
+	private Member member;
 
 	public Integer getId() {
 		return id;
@@ -218,6 +167,5 @@ public class MemberExtend {
 	public void setMember(Member member) {
 		this.member = member;
 	}
-	
-	
+
 }

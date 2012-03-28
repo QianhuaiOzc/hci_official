@@ -4,52 +4,31 @@ import java.util.List;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-/**
-* 
-*/
-
 @Table("report")
 public class Report {
-
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("project_id")
 	private Integer projectId;
-	/**
-	 * 
-	 */
 	@Column("meeting_id")
 	private Integer meetingId;
-	/**
-	 * 
-	 */
 	@Column("comment")
 	private String comment;
-	/**
-	 * 
-	 */
 	@Column("is_report")
 	private Integer isReport;
-	
+
 	@One(target = Project.class, field = "projectId")
-    private Project project;
-	
+	private Project project;
+
 	@One(target = Meeting.class, field = "meetingId")
-    private Meeting meeting;
-	
+	private Meeting meeting;
+
 	@ManyMany(target = File.class, relation = "report_file", from = "reportId", to = "fileId")
-    private List<File> files;
-	
+	private List<File> files;
+
 	@ManyMany(target = Member.class, relation = "report_member", from = "reportId", to = "memberId")
-    private List<Member> members;
+	private List<Member> members;
 
 	public Integer getId() {
 		return id;
@@ -122,6 +101,5 @@ public class Report {
 	public void setMembers(List<Member> members) {
 		this.members = members;
 	}
-	
-	
+
 }

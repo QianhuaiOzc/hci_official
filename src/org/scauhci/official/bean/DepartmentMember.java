@@ -2,41 +2,24 @@ package org.scauhci.official.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
-
-/**
-* 
-*/
-
 @Table("department_member")
 public class DepartmentMember {
 
-	/**
-	 * 
-	 */
 	@Id
 	@Column("id")
 	private Integer id;
-	/**
-	 * 
-	 */
 	@Column("department_id")
 	private Integer departmentId;
-	/**
-	 * 
-	 */
 	@Column("member_id")
 	private Integer memberId;
-	/**
-	 * 
-	 */
 	@Column("type")
 	private Integer type;
-	
+
 	@One(target = Member.class, field = "memberId")
-    private Member member;
-	
+	private Member member;
+
 	@One(target = Department.class, field = "meetingId")
-    private Department deparment;
+	private Department deparment;
 
 	public Integer getId() {
 		return id;
@@ -85,8 +68,5 @@ public class DepartmentMember {
 	public void setDeparment(Department deparment) {
 		this.deparment = deparment;
 	}
-	
-	
-	
-	
+
 }
