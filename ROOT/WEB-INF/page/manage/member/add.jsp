@@ -1,42 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="/WEB-INF/tld/c.tld" %>
 <head>
-<style type="text/css">
-.file_input_tip{
-    margin-top: 10px;
-    width: 80px;
-    height: 20px;
-    display: block;
-    border: 1px #AAAAAA solid;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -border-radius: 10px;
-}
-#image_file{
-    width: 80px;
-    height: 20px;
-    opacity:0;
-    margin-top: -20px;
-    margin-bottom: 10px;
-}
-
-</style>
 
 </head>
 
 <body>
 <div>
-
-<div>
-<img alt="" src="${base}/images/user.jpg" width=120 height=120 >
-<form action="" id="image_form" name="form" method="post" enctype="multipart/form-data"  target="hidden_frame" >                  
-<span class="file_input_tip">选择图片 </span>
-<input  type="file" id="image_file" name="photo" style="" >
-<iframe name="hidden_frame" id="hidden_frame" style="display:none"></iframe>
-</form>
-</div>
-
 <form action="/member/0" method="post" id="">
 <div >
 <label>学号：</label>
@@ -125,7 +94,7 @@
 
 <div>
 <input type="hidden" name="" value="${TOKEN}" >
-<input type="button" value="提交" >
+<input type="submit" value="提交" >
 </div>
 
 </form>
