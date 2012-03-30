@@ -13,10 +13,23 @@ public class Member {
 	public static final int STATE_GRADUATE = 0;
 	// 退出
 	public static final int STATE_LEAVE = -1;
+	//实习
+	public static final int STATE_PROBATIONER=2;
 
+	//老师
 	public static final int TYPE_TEACHER = 1;
+	//研究生
+	public static final int TYPE_GRADUATE_STUDENT=2;
+	//学生
+	public static final int TYPE_STUDENT = 3;
+	
+	
+	//管理员
+	public static final int ROLE_ADMIN=1;
+	//普通
+	public static final int ROLE_COMMON=0;	
 
-	public static final int TYPE_STUDENT = 2;
+	
 
 	@Id
 	@Column("id")

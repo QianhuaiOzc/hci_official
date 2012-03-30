@@ -4,5 +4,6 @@ import org.nutz.ioc.loader.annotation.IocBean;
 
 @IocBean
 public class MemberService {
-
+	
+	
 }
