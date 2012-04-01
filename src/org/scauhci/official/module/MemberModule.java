@@ -23,23 +23,23 @@ public class MemberModule {
 	@Inject
 	MemberService memberService;
 	
-	@At("/member/add")
+	@At("/member/new")
 	@Ok("jsp:page.manage.member.add")
 	public void toAdd(HttpServletRequest req){
-		req.setAttribute("TOKEN", TokenUtil.create(req.getSession()));
+		//req.setAttribute("TOKEN", TokenUtil.create(req.getSession()));
 	}
 	
 	@At("/member/edit/?")
 	@Ok("jsp:page.manage.member.edit")
 	public void toEidt(int id, HttpServletRequest req){
-		req.setAttribute("TOKEN", TokenUtil.create(req.getSession()));
+		//req.setAttribute("TOKEN", TokenUtil.create(req.getSession()));
 		req.setAttribute("member", null);
 		req.setAttribute("extend", null);
 	}
 	
 	@POST
 	@At("/member/?")
-	@Ok("forward:/member/edit/{id}")
+	@Ok("json")
 	public void eidt(int id, @Param("::member.") Member member,@Param("::extend.") MemberExtend me,  HttpServletRequest req){
 		if(id!=0){
 			
@@ -74,12 +74,23 @@ public class MemberModule {
 		
 	}
 	
-	@At("/member/list/?/?")
-	public void list(int type,int page){
+	@At("/members/state/?")
+	public void stateList(int type,int page){
 		
 		
 	}
 	
+	@At("/members/type/?")
+	public void typeList(int type,int page){
+		
+		
+	}
+	
+	@At("/members/admin")
+	public void adminList(int type,int page){
+		
+		
+	}
 	
 
 }
