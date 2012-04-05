@@ -44,10 +44,10 @@
 <div>
 <label>状态：</label>
 <select name="member.state" >
-<option value="2" >见习生</option>
 <option value="1">在职</option>
-<option value="0">已毕业</option>
-<option value="-1">退出</option>
+<option value="2">已毕业</option>
+<option value="3" >见习生</option>
+<option value="4">退出</option>
 </select>
 </div>
 
@@ -93,7 +93,7 @@
 </div>
 
 <div>
-<input type="hidden" name="" value="${TOKEN}" >
+<input type="hidden" name="" value="" >
 <input type="submit" value="提交" >
 </div>
 

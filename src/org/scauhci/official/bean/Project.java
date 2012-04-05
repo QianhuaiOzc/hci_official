@@ -20,7 +20,7 @@ public class Project {
 	@Column("state")
 	private Integer state;
 	@Column("is_public")
-	private Integer isPublic;
+	private boolean isPublic;
 	@Column("department_id")
 	private Integer departmentId;
 
@@ -84,11 +84,11 @@ public class Project {
 		this.state = state;
 	}
 
-	public Integer getIsPublic() {
+	public boolean getIsPublic() {
 		return isPublic;
 	}
 
-	public void setIsPublic(Integer isPublic) {
+	public void setIsPublic(boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 

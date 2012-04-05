@@ -1,5 +1,7 @@
 package org.scauhci.official.bean;
 
+import java.sql.Date;
+
 import org.nutz.dao.entity.annotation.*;
 
 @Table("member_extend")
@@ -8,8 +10,6 @@ public class MemberExtend {
 	@Id
 	@Column("id")
 	private Integer id;
-	@Column("member_id")
-	private Integer memberId;
 	@Column("sex")
 	private Integer sex;
 	@Column("familyaddress")
@@ -23,7 +23,7 @@ public class MemberExtend {
 	@Column("homepage")
 	private String homepage;
 	@Column("birthday")
-	private java.util.Date birthday;
+	private Date birthday;
 	@Column("email")
 	private String email;
 	@Column("mobile")
@@ -37,8 +37,7 @@ public class MemberExtend {
 	@Column("major")
 	private String major;
 
-	@One(target = Member.class, field = "memberId")
-	private Member member;
+
 
 	public Integer getId() {
 		return id;
@@ -46,14 +45,6 @@ public class MemberExtend {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 
 	public Integer getSex() {
@@ -108,7 +99,7 @@ public class MemberExtend {
 		return birthday;
 	}
 
-	public void setBirthday(java.util.Date birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -160,12 +151,5 @@ public class MemberExtend {
 		this.major = major;
 	}
 
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 }

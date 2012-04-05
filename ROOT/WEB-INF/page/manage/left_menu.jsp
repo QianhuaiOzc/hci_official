@@ -32,13 +32,13 @@
                         <div class="menu-item">
 				<a class="menu-btn" href="javascript:void(0);">成员</a>
 				<ul  class="menu-sub">
-					<li><a href="/member/add" >添加成员</a></li>
-					<li><a href="javascript:void(0);" >老师</a></li>
-					<li><a href="javascript:void(0);" >研究生</a></li>
-					<li><a href="javascript:void(0);" >毕业成员</a></li>
-					<li><a href="javascript:void(0);" >成员列表</a></li>
+					<li><a href="/member/new" >添加成员</a></li>
+					<li><a href="/members/type/1" >老师</a></li>
+					<li><a href="/members/type/2" >研究生</a></li>
+					<li><a href="/members/state/2" >毕业成员</a></li>
+					<li><a href="/members/state/1" >成员列表</a></li>
 					<li><a href="javascript:void(0);" >空闲成员</a></li>
-					<li><a href="javascript:void(0);" >退出成员</a></li>
+					<li><a href="/members/state/4" >退出成员</a></li>
 				</ul>
 			</div>
 			<div class="menu-item">

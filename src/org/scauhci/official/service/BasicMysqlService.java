@@ -36,4 +36,49 @@ public class BasicMysqlService<T> extends IdEntityService<T> {
         list = this.query( cnd, pager);
         return list;
     }
+    
+    protected  List<T> getList(Class<T> clazz, Condition cnd, Pager pager, String regex) {
+        List<T> list = null;
+        list = dao().query(clazz, cnd, pager);
+        if (null != regex && !"".equals(regex)) {
+            for (T obj : list) {
+                dao().fetchLinks(obj, regex);
+            }
+        }
+        return list;
+    }
+    
+    protected  void insertEntity(T t, String regex) {
+
+        if (regex != null && !"".equals(regex)) {
+            dao().insertWith(t,regex);
+        }else{
+        	 dao().insert(t);
+        }
+ 
+    }
+    
+    protected void updateEntity(T t,String regex){
+    	if (regex != null && !"".equals(regex)) {
+            dao().updateWith(t,regex);
+        }else{
+        	 dao().update(t);
+        }
+    }
+    
+    protected  T getEntity(Condition cnd, String regex) {
+        T obj = this.fetch(cnd);
+        if (regex != null && !"".equals(regex)) {
+            dao().fetchLinks(obj, regex);
+        }
+        return obj;
+    }
+
+    protected int deleteEntity(Object obj, String regex) {
+        return dao().deleteWith(obj, regex);
+    }
+    
+    
+    
+    
 }
