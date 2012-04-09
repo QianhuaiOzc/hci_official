@@ -173,7 +173,7 @@ public class MemberModule {
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(page<1)
 			page=1;
-		map.put("list", memberService.listBytype(type, memberService.dao().createPager(page, Config.MANAGER_PAGE_SIZE)));	
+		map.put("list", memberService.listByType(type, memberService.dao().createPager(page, Config.MANAGER_PAGE_SIZE)));	
 		map.put("count", memberService.countByType(type));
 	    map.put("size", Config.MANAGER_PAGE_SIZE);
 	    map.put("page", page);

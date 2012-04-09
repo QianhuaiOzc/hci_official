@@ -11,10 +11,19 @@ var ioc = {
 			password : '12345'
 		}
 	},
+	fileSqlManager:{
+        type:"org.nutz.dao.impl.FileSqlManager",
+        args:["sql"]
+    },
 	dao: {
 		type: "org.nutz.dao.impl.NutDao",
-		args: [{
-			refer: "dataSource"
-		}]
+		args: [
+		       {
+		    	   refer: "dataSource"
+		       },
+		        {
+		            refer : "fileSqlManager"
+		        }
+		      ]
 	}
 }

@@ -1,11 +1,22 @@
 package org.scauhci.official.bean;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.nutz.dao.entity.annotation.*;
 
 @Table("project")
 public class Project {
+	
+	//项目开发中
+	public static int STATE_DEVELOPING=1;
+	//项目结题
+	public static int STATE_FINISHED=2;
+	//项目难产
+	public static int STATE_FAIL=3;
+	
+	
+	
 	@Id
 	@Column("id")
 	private Integer id;
@@ -14,15 +25,15 @@ public class Project {
 	@Column("detail")
 	private String detail;
 	@Column("state_date")
-	private java.util.Date stateDate;
+	private Date stateDate;
 	@Column("end_date")
-	private java.util.Date endDate;
+	private Date endDate;
 	@Column("state")
-	private Integer state;
+	private int state;
 	@Column("is_public")
 	private boolean isPublic;
 	@Column("department_id")
-	private Integer departmentId;
+	private int departmentId;
 
 	@Many(target = Report.class, field = "projectId")
 	private List<Report> reports;
@@ -60,19 +71,19 @@ public class Project {
 		this.detail = detail;
 	}
 
-	public java.util.Date getStateDate() {
+	public Date getStateDate() {
 		return stateDate;
 	}
 
-	public void setStateDate(java.util.Date stateDate) {
+	public void setStateDate(Date stateDate) {
 		this.stateDate = stateDate;
 	}
 
-	public java.util.Date getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(java.util.Date endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 

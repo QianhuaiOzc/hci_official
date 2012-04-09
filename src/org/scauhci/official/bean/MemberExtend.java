@@ -95,7 +95,7 @@ public class MemberExtend {
 		this.homepage = homepage;
 	}
 
-	public java.util.Date getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 

@@ -5,9 +5,12 @@ import java.util.List;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
 import org.nutz.dao.pager.Pager;
+import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.scauhci.official.bean.Member;
+import org.scauhci.official.bean.Project;
 
 
 @IocBean(args = {"refer:dao"})
@@ -52,7 +55,7 @@ public class MemberService extends BasicMysqlService<Member>{
 		return this.getList(Cnd.where("state", "=", state), pager);
 	}
 	
-	public List<Member> listBytype(int type,Pager pager){
+	public List<Member> listByType(int type,Pager pager){
 		return this.getList(Cnd.where("type", "=", type), pager);
 	}
 	
@@ -68,5 +71,14 @@ public class MemberService extends BasicMysqlService<Member>{
 		return null;
 	}
 	
+	public List<Member> listByFree(Pager pager){
+		Sql sql = dao().sqls().create("member.free");
+		sql.setCallback(Sqls.callback.entities());
+		sql.setPager(pager);
+		sql.setEntity(dao().getEntity(Member.class));
+		dao().execute(sql);
+		return sql.getList(Member.class);
+
+	}
 	
 }
