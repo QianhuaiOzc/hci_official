@@ -3,7 +3,28 @@
  <%@taglib prefix="c" uri="/WEB-INF/tld/c.tld" %>
 
 <body>
+<div>
+<table>
+	<tr>
+		<td>头像</td>
+		<td>帐号</td>
+		<td>姓名</td>
+		<td>详细信息</td>
+	</tr>
+	 <c:forEach items="${obj.list}" var="member" varStatus="status">
+	 <tr>
+	 <td><img src="/member/avatar/${member.studentId }?thumb=true" alt="" ></td>
+	 <td>${member.studentId}</td>
+	 <td>${member.name}</td>
+	 <td><a href="/member/edit/${member.id}" >详细信息</a></td>
+	 </tr>
+	 </c:forEach>
 
+</table>
+
+
+
+</div>
 
 <div class="last-menu">
         <span >共${obj.count}条纪录，当前第${obj.page}页，每页${obj.size}条纪录</span>

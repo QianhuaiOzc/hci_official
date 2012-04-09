@@ -1,7 +1,7 @@
 -- =============================================================================
 -- Diagram Name: 数据库设计
 -- Created on: 2012/3/17 11:07:11
--- Diagram Version: 
+-- Diagram Version:
 -- =============================================================================
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -17,13 +17,14 @@ CREATE TABLE `member` (
   `role` int(11) COMMENT '角色',
   `type` int(11) NOT NULL COMMENT '表示老师，学生，毕业',
   `is_public` tinyint(4) NOT NULL COMMENT '是否对外公开',
+  `extend_id` int(11) NOT NULL,
   PRIMARY KEY(`id`),
   UNIQUE INDEX `student_id`(`student_id`)
 )
 ENGINE=MYISAM
-COMMENT = '成员\201\2'
+COMMENT = '成员'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table project
@@ -56,7 +57,7 @@ CREATE TABLE `department` (
 ENGINE=MYISAM
 COMMENT = '部门'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table meeting
@@ -71,7 +72,7 @@ CREATE TABLE `meeting` (
 ENGINE=MYISAM
 COMMENT = '会议'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table project_member
@@ -89,7 +90,7 @@ CREATE TABLE `project_member` (
 ENGINE=MYISAM
 COMMENT = '项目成员'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table department_member
@@ -106,7 +107,7 @@ CREATE TABLE `department_member` (
 ENGINE=MYISAM
 COMMENT = '部门成员'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table attendance
@@ -125,7 +126,7 @@ CREATE TABLE `attendance` (
 ENGINE=MYISAM
 COMMENT = '考勤'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table report
@@ -143,7 +144,7 @@ CREATE TABLE `report` (
 ENGINE=MYISAM
 COMMENT = '项目汇报'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table member_extend
@@ -151,7 +152,6 @@ DROP TABLE IF EXISTS `member_extend`;
 
 CREATE TABLE `member_extend` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` int(11),
   `sex` tinyint(4) NOT NULL,
   `familyaddress` varchar(256),
   `nativeplace` varchar(128),
@@ -165,13 +165,12 @@ CREATE TABLE `member_extend` (
   `grade` int(11),
   `academy` varchar(32),
   `major` varchar(32),
-  PRIMARY KEY(`id`),
-  UNIQUE INDEX `member_id`(`member_id`)
+  PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
 COMMENT = '成员详细资料'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table message
@@ -188,7 +187,7 @@ CREATE TABLE `message` (
 ENGINE=MYISAM
 COMMENT = '消息'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table member_message
@@ -208,7 +207,7 @@ CREATE TABLE `member_message` (
 ENGINE=MYISAM
 COMMENT = '成员消息'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table file
@@ -226,7 +225,7 @@ CREATE TABLE `file` (
 ENGINE=MYISAM
 COMMENT = '文件'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table report_file
@@ -242,7 +241,7 @@ CREATE TABLE `report_file` (
 ENGINE=MYISAM
 COMMENT = '汇报文件'
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
 -- Drop table report_member
@@ -257,9 +256,14 @@ CREATE TABLE `report_member` (
 )
 ENGINE=MYISAM
 ROW_FORMAT=default
-CHARACTER SET utf8 
+CHARACTER SET utf8
 COLLATE utf8_bin ;
 
+ALTER TABLE `member` ADD
+  CONSTRAINT `Ref_22` FOREIGN KEY (`extend_id`)
+    REFERENCES `member_extend`(`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
 
 ALTER TABLE `project` ADD
   CONSTRAINT `Ref_23` FOREIGN KEY (`department_id`)
@@ -315,11 +319,6 @@ ALTER TABLE `report` ADD
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
 
-ALTER TABLE `member_extend` ADD
-  CONSTRAINT `Ref_12` FOREIGN KEY (`member_id`)
-    REFERENCES `member`(`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
 
 ALTER TABLE `message` ADD
   CONSTRAINT `Ref_16` FOREIGN KEY (`member_id`)
