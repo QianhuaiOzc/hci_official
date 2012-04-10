@@ -10,14 +10,28 @@ public class Member {
 	// 在职
 	public static final int STATE_ON_THE_JOB = 1;
 	// 毕业
-	public static final int STATE_GRADUATE = 0;
+	public static final int STATE_GRADUATE = 2;
+	//实习
+	public static final int STATE_PROBATIONER=3;
 	// 退出
-	public static final int STATE_LEAVE = -1;
+	public static final int STATE_LEAVE = 4;
+	
 
+	//老师
 	public static final int TYPE_TEACHER = 1;
+	//研究生
+	public static final int TYPE_GRADUATE_STUDENT=2;
+	//学生
+	public static final int TYPE_STUDENT = 3;
+	
+	
+	//管理员
+	public static final int ROLE_ADMIN=1;
+	//普通
+	public static final int ROLE_COMMON=0;	
+	
 
-	public static final int TYPE_STUDENT = 2;
-
+	
 	@Id
 	@Column("id")
 	private Integer id;
@@ -34,10 +48,15 @@ public class Member {
 	@Column("type")
 	private Integer type;
 	@Column("is_public")
-	private Integer isPublic;
+	private boolean isPublic;
+	@Column("extend_id")
+	private int extendId;
+	
 
 	@ManyMany(target = Project.class, relation = "project_member", from = "memberId", to = "projectId")
 	private List<Project> projects;
+	@One(target = MemberExtend.class, field = "extendId")
+	private MemberExtend extend;
 
 	public Integer getId() {
 		return id;
@@ -95,11 +114,11 @@ public class Member {
 		this.type = type;
 	}
 
-	public Integer getIsPublic() {
+	public boolean getIsPublic() {
 		return isPublic;
 	}
 
-	public void setIsPublic(Integer isPublic) {
+	public void setIsPublic(boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 
@@ -109,6 +128,22 @@ public class Member {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	public int getExtendId() {
+		return extendId;
+	}
+
+	public void setExtendId(int extendId) {
+		this.extendId = extendId;
+	}
+
+	public MemberExtend getExtend() {
+		return extend;
+	}
+
+	public void setExtend(MemberExtend extend) {
+		this.extend = extend;
 	}
 
 }

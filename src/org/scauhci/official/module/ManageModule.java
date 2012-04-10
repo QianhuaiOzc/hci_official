@@ -5,15 +5,16 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 
 @IocBean
+@At("/mana-")
 public class ManageModule {
 	
-	@At("/mana-main")
+	@At("main")
 	@Ok("jsp:page.manage.main")
 	public void main(){
 				
 	}
 	
-	@At("/mana-menu")
+	@At("menu")
 	@Ok("jsp:page.manage.left_menu")
 	public void menu(){
 				
