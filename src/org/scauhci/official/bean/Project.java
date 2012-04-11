@@ -19,7 +19,7 @@ public class Project {
 	
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("name")
 	private String name;
 	@Column("detail")

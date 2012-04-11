@@ -72,6 +72,7 @@ public class MemberModule {
 			 Trans.exec(new Atom() {
                  @Override
                  public void run() {
+                	member.setPassword(memberService.fetch(member.getId()).getPassword());
                     member.setExtend(me);
                     memberService.updateAll(member);
                  }
@@ -151,7 +152,7 @@ public class MemberModule {
 	@GET
 	@At("/member/avatar/?")
 	public void avatar(String id,@Param("thumb") boolean thumb,HttpServletRequest req,HttpServletResponse res){
-		PrintImage.writePhoto(Config.avatarPath, id, thumb, req, res);
+		PrintImage.writePhoto(Config.avatarPath, id, thumb,Config.defaultAvatar, req, res);
 	}
 	
 	@At("/members/state/?")

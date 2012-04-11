@@ -3,14 +3,12 @@ package org.scauhci.official.service;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
-import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
 import org.nutz.dao.Sqls;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.scauhci.official.bean.Member;
-import org.scauhci.official.bean.Project;
 
 
 @IocBean(args = {"refer:dao"})
@@ -18,7 +16,6 @@ public class MemberService extends BasicMysqlService<Member>{
 
 	public MemberService(Dao dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void insertMember(Member m){	

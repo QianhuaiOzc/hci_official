@@ -18,14 +18,8 @@ public class ProjectService extends BasicMysqlService<Project>{
 
 	public ProjectService(Dao dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
 	
-	public void deletePorject(int id){
-		Project p=this.fetch(id);
-		p.setState(Project.STATE_FAIL);
-		this.update(p);
-	}
 	
 	public List<Member> memberList(int id){
 		Project p=this.fetch(id);
@@ -50,8 +44,8 @@ public class ProjectService extends BasicMysqlService<Project>{
 		this.dao().insert(pm);
 	}
 	
-	public void removeProjectMember(ProjectMember pm){
-		this.dao().delete(pm);
+	public void removeProjectMember(int id){
+		this.dao().delete(ProjectMember.class, id);
 	}
 	
 	public void updateProjectMember(ProjectMember pm){
@@ -80,9 +74,17 @@ public class ProjectService extends BasicMysqlService<Project>{
 	}
 	
 	public List<Project> listByMember(int id,int state){
-		return null;
+		Sql sql = dao().sqls().create("project.free");
+		sql.params().set("id", id);
+        sql.params().set("state", state);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(dao().getEntity(Project.class));
+		dao().execute(sql);
+		return sql.getList(Project.class);
 	}
 	
-	
+	public int countByState(int state){		
+		return dao().count(Project.class, Cnd.where("state", "=", state));
+	}
 	
 }

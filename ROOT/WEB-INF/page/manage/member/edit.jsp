@@ -46,6 +46,11 @@
 
 		<form action="/member/${member.id }" method="post">
 			<div>
+			<input type="hidden" name="member.id" value="${member.id }" > 
+			<input type="hidden" name="extend.id" value="${extend.id }" > 
+			</div>
+		
+			<div>
 				<label>学号：</label> <input type="text" name="member.studentId"
 					value="${member.studentId }">
 			</div>

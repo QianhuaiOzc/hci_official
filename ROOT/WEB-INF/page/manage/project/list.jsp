@@ -4,19 +4,17 @@
 
 <body>
 <div>
-<table border="1">
+<table border="1" >
 	<tr>
-		<td>头像</td>
-		<td>帐号</td>
-		<td>姓名</td>
+		<td>图标</td>
+		<td>项目名</td>
 		<td>详细信息</td>
 	</tr>
-	 <c:forEach items="${obj.list}" var="member" varStatus="status">
+	 <c:forEach items="${obj.list}" var="project" varStatus="status">
 	 <tr>
-	 <td><img src="/member/avatar/${member.studentId }?thumb=true" alt="" ></td>
-	 <td>${member.studentId}</td>
-	 <td>${member.name}</td>
-	 <td><a href="/member/edit/${member.id}" >详细信息</a></td>
+	 <td><img src="/project/avatar/${project.id }?thumb=true" alt="" ></td>
+	 <td>${project.name}</td>
+	 <td><a href="/project/edit/${project.id}" >详细信息</a></td>
 	 </tr>
 	 </c:forEach>
 

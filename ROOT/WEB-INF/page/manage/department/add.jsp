@@ -6,15 +6,15 @@
 
 <body>
 <div>
-<form action="/project/0" method="post" id="">
+<form action="/department/0" method="post" id="">
 <div >
-<label>项目名：</label>
-<input type="text" name="project.name" >
+<label>部门名：</label>
+<input type="text" name="department.name" >
 </div>
 
 <div>
-<label>简介：</label>
-<textarea rows="4" cols="20" name="project.detail" ></textarea>
+<label>部门简介：</label>
+<textarea rows="4" cols="20" name="department.detail" ></textarea>
 </div>
 
 <div>

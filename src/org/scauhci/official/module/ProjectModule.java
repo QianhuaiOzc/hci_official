@@ -25,6 +25,8 @@ import org.nutz.trans.Trans;
 import org.scauhci.official.Config;
 import org.scauhci.official.bean.Member;
 import org.scauhci.official.bean.MemberExtend;
+import org.scauhci.official.bean.Project;
+import org.scauhci.official.bean.ProjectMember;
 import org.scauhci.official.service.MemberService;
 import org.scauhci.official.service.ProjectService;
 import org.scauhci.official.util.ImageZip;
@@ -37,105 +39,222 @@ public class ProjectModule {
 	MemberService memberService;
 	@Inject
 	ProjectService projectService;
-	
+
 	@At("/project/new")
 	@Ok("jsp:page.manage.project.add")
-	public void toAdd(HttpServletRequest req){
-		
+	public void toAdd(HttpServletRequest req) {
+
 	}
-	
+
 	@At("/project/edit/?")
 	@Ok("jsp:page.manage.project.edit")
-	public void toEidt(int id, HttpServletRequest req){
-		
+	public void toEidt(int id, HttpServletRequest req) {
+		Project p = projectService.fetch(id);
+		req.setAttribute("project", p);
 	}
-	
+
 	@POST
 	@At("/project/?")
 	@Ok("json")
-	public Map eidt(int id ){
-		Map<String,Object> map=new HashMap<String,Object>();
-		
+	public Map eidt(final int id, @Param("::project.") final Project project) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if (id == 0) {
+				Trans.exec(new Atom() {
+					@Override
+					public void run() {
+						project.setState(Project.STATE_DEVELOPING);
+						project.setStateDate(new java.sql.Date(
+								new java.util.Date().getTime()));
+						projectService.add(project);
+					}
+				});
+			} else {
+				Trans.exec(new Atom() {
+					@Override
+					public void run() {
+						Project p = projectService.fetch(id);
+						project.setState(p.getState());
+						project.setStateDate(p.getStateDate());
+						project.setEndDate(p.getEndDate());
+						project.setIsPublic(p.getIsPublic());
+						projectService.update(project);
+					}
+				});
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("state", "fail");
+			map.put("message", "操作失败");
+			return map;
+		}
+		map.put("state", "ok");
 		return map;
-		
+
 	}
-	
+
 	@GET
 	@At("/project/?")
 	@Ok("json")
-	public Map get(int id){
-		Map<String,Object> map=new HashMap<String,Object>();
-		
+	public Map get(int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Project p = projectService.fetch(id);
+		map.put("project", p);
+		return map;
+	}
+
+	@At("/project/delete")
+	@Ok("json")
+	public Map delete(@Param("id") final int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			Trans.exec(new Atom() {
+				@Override
+				public void run() {
+					Project p = projectService.fetch(id);
+					p.setState(Project.STATE_FAIL);
+					p.setStateDate(new java.sql.Date(new java.util.Date()
+							.getTime()));
+					projectService.update(p);
+				}
+			});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("state", "fail");
+			map.put("message", "操作失败");
+			return map;
+		}
+		map.put("state", "ok");
 		return map;
 	}
 	
-	@At("/project/delete/?")
+	@At("/project/finish")
 	@Ok("json")
-	public Map delete(final int id){
-		Map<String,Object> map=new HashMap<String,Object>();
-		
+	public Map finish(@Param("id") final int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			Trans.exec(new Atom() {
+				@Override
+				public void run() {
+					Project p = projectService.fetch(id);
+					p.setState(Project.STATE_FINISHED);
+					p.setStateDate(new java.sql.Date(new java.util.Date()
+							.getTime()));
+					projectService.update(p);
+				}
+			});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("state", "fail");
+			map.put("message", "操作失败");
+			return map;
+		}
+		map.put("state", "ok");
 		return map;
-		
 	}
 	
 	@POST
 	@At("/project/avatar/?")
-	@AdaptBy(type = UploadAdaptor.class, args = {"ioc:myUpload"})
-	public void upload(String id ,@Param("avatar") TempFile avatar,HttpServletResponse res ) throws IOException{
+	@AdaptBy(type = UploadAdaptor.class, args = { "ioc:myUpload" })
+	public void upload(String id, @Param("avatar") TempFile avatar,
+			HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
-        if (avatar == null || id == null || "".equals(id)) {
+		if (avatar == null || id == null || "".equals(id)) {
 
-            out.write("<script> alert('fail')</script>");
-            return;
+			out.write("<script> alert('fail')</script>");
+			return;
 
-        }
-        File tempFile = avatar.getFile();
-        File newFile = new File(Config.avatarPath + "/" + id +avatar.getMeta().getFileExtension());
-        try {
+		}
+		File tempFile = avatar.getFile();
+		File newFile = new File(Config.projectImagePath + "/" + id
+				+ avatar.getMeta().getFileExtension());
+		try {
 
-            Files.deleteFile(newFile);
-            Files.move(tempFile, newFile);
-            ImageZip.zipImageFile(newFile.getAbsolutePath(), Config.avatarPath, "thumb_"+id+".jpg");
+			Files.deleteFile(newFile);
+			Files.move(tempFile, newFile);
+			ImageZip.zipImageFile(newFile.getAbsolutePath(),
+					Config.projectImagePath, "thumb_" + id + ".jpg");
 
-        } catch (IOException ex) {
-            out.write("<script> alert('fail');</script>");
-            return;
-        }
+		} catch (IOException ex) {
+			out.write("<script> alert('fail');</script>");
+			return;
+		}
 
-        out.write("<script> alert('ok');</script>");
+		out.write("<script> alert('ok');</script>");
 	}
-	
+
 	@GET
 	@At("/project/avatar/?")
-	public void avatar(String id,@Param("thumb") boolean thumb,HttpServletRequest req,HttpServletResponse res){
-		PrintImage.writePhoto(Config.avatarPath, id, thumb, req, res);
+	public void avatar(String id, @Param("thumb") boolean thumb,
+			HttpServletRequest req, HttpServletResponse res) {
+		PrintImage.writePhoto(Config.projectImagePath, id, thumb,Config.defaultProjectImage, req, res);
 	}
-	
+
 	@At("/projects/state/?")
 	@Ok("jsp:page.manage.project.list")
-	public Map stateList(int state,int page){			
-		Map<String,Object> map = new HashMap<String,Object>();	
-		if(page<1)
-			page=1;
-
-	    return map;
+	public Map stateList(int state, int page) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (page < 1)
+			page = 1;
+		map.put("list", projectService.listByState(state, memberService.dao()
+				.createPager(page, Config.MANAGER_PAGE_SIZE)));
+		map.put("count", projectService.countByState(state));
+		map.put("size", Config.MANAGER_PAGE_SIZE);
+		map.put("page", page);
+		return map;
 	}
-	
 
 	@At("/project/members/?")
-	public void memberList(int id){
-		
+	public Map memberList(int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list",projectService.projectMembers(id) );
+		return map;
 	}
-	
+
+	@POST
 	@At("/project/member/?")
-	public void editMember(){
-		
+	public Map editMember(int id, @Param("::pm.") final ProjectMember pm) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if (id == 0) {
+				Trans.exec(new Atom() {
+					@Override
+					public void run() {
+						projectService.addProjectMember(pm);
+					}
+				});
+			} else {
+				Trans.exec(new Atom() {
+					@Override
+					public void run() {
+						projectService.updateProjectMember(pm);
+					}
+				});
+			}
+		} catch (Exception e) {
+
+		}
+
+		return map;
 	}
-	
+
 	@At("/project/member/remove/?")
-	public void removeMember(){
-		
+	public Map removeMember(final int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			Trans.exec(new Atom() {
+				@Override
+				public void run() {
+					projectService.removeProjectMember(id);
+				}
+			});
+		} catch (Exception e) {
+
+		}
+
+		return map;
 	}
-	
-	
+
 }
