@@ -18,7 +18,7 @@
 	 <td><img src="/member/avatar/${member.studentId }?thumb=true" alt="" ></td>
 	 <td>${member.studentId}</td>
 	 <td>${member.name}</td>
-	 <td><a href="javascript:void(0);" >项目</a></td>
+	 <td><a href="/member/projects/${member.id}" >项目</a></td>
 	 <td><a href="/member/edit/${member.id}" >详细信息</a></td>
 	 <td><a href="/member/delete/${member.id}" >退出</a></td>
 	 </tr>

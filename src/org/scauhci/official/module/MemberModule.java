@@ -27,6 +27,8 @@ import org.scauhci.official.Config;
 import org.scauhci.official.bean.DepartmentMember;
 import org.scauhci.official.bean.Member;
 import org.scauhci.official.bean.MemberExtend;
+import org.scauhci.official.bean.Project;
+import org.scauhci.official.bean.ProjectMember;
 import org.scauhci.official.service.DepartmentService;
 import org.scauhci.official.service.MemberService;
 import org.scauhci.official.util.ImageZip;
@@ -220,6 +222,15 @@ public class MemberModule {
 	    map.put("size", Config.MANAGER_PAGE_SIZE);
 	    map.put("page", page);
 	    return map;
+	}
+	
+	@At("/member/projects/?")
+	@Ok("jsp:page.manage.member.projects")
+	public Map memberList(int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("finishedList", memberService.project(id, Project.STATE_FINISHED));
+		map.put("developingList", memberService.project(id, Project.STATE_DEVELOPING));
+		return map;
 	}
 
 }

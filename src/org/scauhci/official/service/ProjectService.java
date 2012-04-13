@@ -21,23 +21,13 @@ public class ProjectService extends BasicMysqlService<Project>{
 	}
 	
 	
-	public List<Member> memberList(int id){
-		Project p=this.fetch(id);
-		this.dao().fetchLinks(p, "members");
-		return p.getMembers();	
-	}
-	
-	public List<Member> memberList(int id,int type){
-		List<ProjectMember> l=this.dao().query(ProjectMember.class,Cnd.where("project_id", "=", id).and("type", "=", type));
-		List<Member> list=new ArrayList<Member>();
-		for(ProjectMember pm:l){		
-				list.add(this.dao().fetch(Member.class, pm.getMemberId()));
-		}
-		return list;
-	}
 	
 	public ProjectMember getProjectMember(int pId,int mId){
 		return this.dao().fetch(ProjectMember.class,Cnd.where("project_id", "=", pId).and("member_id", "=", mId));
+	}
+	
+	public ProjectMember getProjectMember(int id){
+		return this.dao().fetch(ProjectMember.class,id);
 	}
 	
 	public void addProjectMember(ProjectMember pm){
@@ -54,6 +44,14 @@ public class ProjectService extends BasicMysqlService<Project>{
 	
 	public List<ProjectMember> projectMembers(int id){
 		List<ProjectMember> list=this.dao().query(ProjectMember.class,Cnd.where("project_id", "=", id));
+		for(ProjectMember pm:list){
+			this.dao().fetchLinks(pm, "member");
+		}
+		return list;
+	}
+	
+	public List<ProjectMember> projectMembers(int id,int type){
+		List<ProjectMember> list=this.dao().query(ProjectMember.class,Cnd.where("project_id", "=", id).and("type","=",type));
 		for(ProjectMember pm:list){
 			this.dao().fetchLinks(pm, "member");
 		}
@@ -95,7 +93,7 @@ public class ProjectService extends BasicMysqlService<Project>{
 	}
 	
 	public List<Project> listByDepartment(int departmentId,int state,Pager pager){
-		return this.getList(Cnd.where("department_id", "=", departmentId).andNot("state","=", state), pager);
+		return this.getList(Cnd.where("department_id", "=", departmentId).and("state","=", state), pager);
 	}
 	
 	public int countByState(int state){		

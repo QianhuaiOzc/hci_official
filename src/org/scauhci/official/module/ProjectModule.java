@@ -223,14 +223,32 @@ public class ProjectModule {
 	}
 
 	@At("/project/members/?")
+	@Ok("jsp:page.manage.project.member.members")
 	public Map memberList(int id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list",projectService.projectMembers(id) );
+		map.put("projectId", id);
+		map.put("leaderList",projectService.projectMembers(id,ProjectMember.TYPE_LEADER) );
+		map.put("memberList",projectService.projectMembers(id,ProjectMember.TYPE_MEMBER) );
 		return map;
 	}
-
+	
+	@At("/project/member/add/?")
+	@Ok("jsp:page.manage.project.member.addMember")
+	public void toAddMember(int id,HttpServletRequest req){
+		req.setAttribute("projectId", id);
+		req.setAttribute("memberList", memberService.listByState(Member.STATE_ON_THE_JOB, null));
+	}
+	
+	@At("/project/member/edit/?")
+	@Ok("jsp:page.manage.project.member.editMember")
+	public void toEditMember(int id,HttpServletRequest req){
+		req.setAttribute("projectMember", projectService.getProjectMember(id));
+		req.setAttribute("memberList", memberService.listByState(Member.STATE_ON_THE_JOB, null));
+	}
+	
 	@POST
 	@At("/project/member/?")
+	@Ok("json")
 	public Map editMember(int id, @Param("::pm.") final ProjectMember pm) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -250,13 +268,17 @@ public class ProjectModule {
 				});
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			map.put("state", "fail");
+			map.put("message", "操作失败");
+			return map;
 		}
-
+		map.put("state", "ok");
 		return map;
 	}
 
 	@At("/project/member/remove/?")
+	@Ok("json")
 	public Map removeMember(final int id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -267,8 +289,12 @@ public class ProjectModule {
 				}
 			});
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			map.put("state", "fail");
+			map.put("message", "操作失败");
+			return map;
 		}
+		map.put("state", "ok");
 
 		return map;
 	}

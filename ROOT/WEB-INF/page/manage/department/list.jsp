@@ -15,8 +15,8 @@
 	 <c:forEach items="${obj.list}" var="department" varStatus="status">
 	 <tr>
 	 <td>${department.name}</td>
-	 <td><a href="javascript:void(0);" >成员</a></td>
-	 <td><a href="javascript:void(0);" >项目</a></td>
+	 <td><a href="/department/members/${department.id}" >成员</a></td>
+	 <td><a href="/department/projects/${department.id}/1" >项目</a></td>
 	 <td><a href="/department/edit/${department.id}" >详细信息</a></td>
 	 <td><a href="javascript:void(0);" >删除</a></td>
 	 </tr>

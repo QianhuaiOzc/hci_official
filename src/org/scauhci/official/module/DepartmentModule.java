@@ -122,22 +122,28 @@ public class DepartmentModule {
 	}
 
 	@At("/department/members/?")
+	@Ok("jsp:page.manage.department.members")
 	public Map memberList(int id, @Param("page") int page) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", memberService
 				.listByState(id, Member.STATE_ON_THE_JOB, memberService.dao()
 						.createPager(page, Config.MANAGER_PAGE_SIZE)));
-
+		map.put("count", memberService.countByState(id, Member.STATE_ON_THE_JOB));
+	    map.put("size", Config.MANAGER_PAGE_SIZE);
+	    map.put("page", page);
 		return map;
 	}
 
 	@At("/department/projects/?/?")
+	@Ok("jsp:page.manage.department.projects")
 	public Map projectList(int id, int state, @Param("page") int page) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", projectService.listByDepartment(id, state,
 				projectService.dao()
 						.createPager(page, Config.MANAGER_PAGE_SIZE)));
-
+		map.put("count",projectService.countByDepartment(id, state));
+	    map.put("size", Config.MANAGER_PAGE_SIZE);
+	    map.put("page", page);
 		return map;
 	}
 

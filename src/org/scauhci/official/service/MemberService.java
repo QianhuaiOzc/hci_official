@@ -9,6 +9,7 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.scauhci.official.bean.Member;
+import org.scauhci.official.bean.Project;
 
 
 @IocBean(args = {"refer:dao"})
@@ -98,7 +99,16 @@ public class MemberService extends BasicMysqlService<Member>{
 		sql.setEntity(dao().getEntity(Member.class));
 		dao().execute(sql);
 		return sql.getList(Member.class);
-
+	}
+	
+	public List<Project> project(int memberId,int state){
+		Sql sql = dao().sqls().create("member.projects");
+		sql.setCallback(Sqls.callback.entities());
+		sql.params().set("state", state);
+		sql.params().set("memberId", memberId);
+		sql.setEntity(dao().getEntity(Project.class));
+		dao().execute(sql);
+		return sql.getList(Project.class);
 	}
 	
 }

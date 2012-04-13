@@ -4,7 +4,13 @@ import org.nutz.dao.entity.annotation.*;
 
 @Table("project_member")
 public class ProjectMember {
-
+	
+	//项目成员
+	public static int TYPE_MEMBER=1;
+	//项目组长
+	public static int TYPE_LEADER=2;
+	
+	
 	@Id
 	@Column("id")
 	private int id;
@@ -15,12 +21,12 @@ public class ProjectMember {
 	@Column("job")
 	private String job;
 	@Column("type")
-	private int type;
+	private int type=ProjectMember.TYPE_MEMBER;
 
 	@One(target = Project.class, field = "projectId")
 	private Project project;
 
-	@One(target = Member.class, field = "projectId")
+	@One(target = Member.class, field = "memberId")
 	private Member member;
 
 	public int getId() {

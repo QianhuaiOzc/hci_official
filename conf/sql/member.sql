@@ -6,9 +6,11 @@ select count(m.id) from member as m where m.id not in (select pm.member_id from 
 
 
 /* member.department.state */
-select * from member where id not in(select member_id from department_member where departemt_id = @departmemtId ) and state = @state
+select * from member where id not in(select member_id from department_member where department_id = @departmentId ) and state = @state
 
 /* member.department.state.count */
-select count(id) from member where id not in(select member_id from department_member where departemt_id = @departmemtId ) and state = @state
+select count(id) from member where id not in(select member_id from department_member where department_id = @departmentId ) and state = @state
 
+/* member.projects */
+select * from project where id in (select pm.project_id from project_member as pm where pm.member_id= @memberId ) and state= @state
 

@@ -17,7 +17,7 @@
 	 <tr>
 	 <td><img src="/project/avatar/${project.id }?thumb=true" alt="" ></td>
 	 <td>${project.name}</td>
-	 <td><a href="javascript:void(0);" >项目成员</a></td>
+	 <td><a href="/project/members/${project.id}" >项目成员</a></td>
 	 <td><a href="/project/edit/${project.id}" >详细信息</a></td>
 	 <td><a href="/project/finish/${project.id}" >结题</a></td>
 	 <td><a href="/project/delete/${project.id}" >取消</a></td>
