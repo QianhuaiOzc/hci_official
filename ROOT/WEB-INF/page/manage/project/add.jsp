@@ -13,6 +13,15 @@
 </div>
 
 <div>
+<select name="project.departmentId">
+	<option value="0">请选择部门</option>
+	<c:forEach items="${departmentList}" var="department">
+	<option value="${department.id}">${department.name}</option>
+	</c:forEach>
+</select>
+</div>
+
+<div>
 <label>简介：</label>
 <textarea rows="4" cols="20" name="project.detail" ></textarea>
 </div>

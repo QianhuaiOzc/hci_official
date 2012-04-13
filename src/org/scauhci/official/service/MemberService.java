@@ -30,15 +30,20 @@ public class MemberService extends BasicMysqlService<Member>{
 		this.updateEntity(m, "extend");
 	}
 	
-	public void deleteMember(int id){
-		Member m=this.fetch(id);
-		m.setState(Member.STATE_LEAVE);
-		this.update(m);
+	
+	public int countByState(int departmentId,int state){	
+		Sql sql = dao().sqls().create("member.department.state");
+		sql.params().set("departmentId", departmentId);
+        sql.params().set("state", state);
+		sql.setCallback(Sqls.callback.integer());
+		dao().execute(sql);
+		return sql.getInt();
 	}
 	
 	public int countByState(int state){		
 		return dao().count(Member.class, Cnd.where("state", "=", state));
 	}
+	
 	
 	public int countByType(int type){
 		return dao().count(Member.class, Cnd.where("state", "=", type));
@@ -46,6 +51,24 @@ public class MemberService extends BasicMysqlService<Member>{
 	
 	public int countByRole(int role){
 		return dao().count(Member.class, Cnd.where("state", "=", role));
+	}
+	
+	public int countByFree(){
+		Sql sql = dao().sqls().create("member.free");
+		sql.setCallback(Sqls.callback.integer());
+		dao().execute(sql);
+		return sql.getInt();
+	}
+	
+	public List<Member> listByState(int departmentId,int state,Pager pager){
+		Sql sql = dao().sqls().create("member.department.state");
+		sql.params().set("departmentId", departmentId);
+        sql.params().set("state", state);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setPager(pager);
+		sql.setEntity(dao().getEntity(Member.class));
+		dao().execute(sql);
+		return sql.getList(Member.class);
 	}
 	
 	public List<Member> listByState(int state,Pager pager){

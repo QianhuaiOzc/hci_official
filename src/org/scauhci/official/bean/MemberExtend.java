@@ -9,9 +9,9 @@ public class MemberExtend {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("sex")
-	private Integer sex;
+	private int sex;
 	@Column("familyaddress")
 	private String familyaddress;
 	@Column("nativeplace")
@@ -31,7 +31,7 @@ public class MemberExtend {
 	@Column("mobileshort")
 	private String mobileshort;
 	@Column("grade")
-	private Integer grade;
+	private int grade;
 	@Column("academy")
 	private String academy;
 	@Column("major")
@@ -39,19 +39,19 @@ public class MemberExtend {
 
 
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getSex() {
+	public int getSex() {
 		return sex;
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 
@@ -127,11 +127,11 @@ public class MemberExtend {
 		this.mobileshort = mobileshort;
 	}
 
-	public Integer getGrade() {
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(Integer grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 

@@ -30,11 +30,13 @@
 	<div>
 
 		<div>
-			<img alt="" src="/member/avatar/${member.studentId }?thumb=true" width=120
-				height=120>
-			<form action="/member/avatar/${member.studentId }" id="image_form" name="form" method="post" enctype="multipart/form-data" target="hidden_frame">
-				<span class="file_input_tip">选择图片 </span> 
-				<input type="file" id="image_file" name="avatar" style="">
+			<img alt="" src="/member/avatar/${member.studentId }?thumb=true"
+				width=120 height=120>
+			<form action="/member/avatar/${member.studentId }" id="image_form"
+				name="form" method="post" enctype="multipart/form-data"
+				target="hidden_frame">
+				<span class="file_input_tip">选择图片 </span> <input type="file"
+					id="image_file" name="avatar" style="">
 				<iframe name="hidden_frame" id="hidden_frame" style="display: none"></iframe>
 			</form>
 			<script type="text/javascript">
@@ -46,10 +48,10 @@
 
 		<form action="/member/${member.id }" method="post">
 			<div>
-			<input type="hidden" name="member.id" value="${member.id }" > 
-			<input type="hidden" name="extend.id" value="${extend.id }" > 
+				<input type="hidden" name="member.id" value="${member.id }">
+				<input type="hidden" name="extend.id" value="${extend.id }">
 			</div>
-		
+
 			<div>
 				<label>学号：</label> <input type="text" name="member.studentId"
 					value="${member.studentId }">
@@ -93,6 +95,19 @@
 			</div>
 
 			<div>
+				<input type="hidden" value="${departmentMember.id }" name="departmentMember.id" >
+				<select name="departmentMember.departmentId">
+					<option value="0">请选择部门</option>
+					<c:forEach items="${departmentList}" var="department">
+						<option value="${department.id}" ${departmentMember.departmentId== department.id ?"selected=\"selected\"":"" }>${department.name}</option>
+					</c:forEach>
+				</select> <select name="departmentMember.type">
+					<option value="1" ${departmentMember.type== 1?"selected=\"selected\"":"" }>部门成员</option>
+					<option value="2" ${departmentMember.type== 2?"selected=\"selected\"":"" }>部门负责人</option>
+				</select>
+			</div>
+
+			<div>
 				<label>年级：</label> <input type="text" name="extend.grade"
 					value="${extend.grade }">
 			</div>
@@ -120,7 +135,7 @@
 
 			<div>
 				<label>邮箱：</label> <input type="text" name="extend.email"
-					value="${extedn.email }">
+					value="${extend.email }">
 			</div>
 
 			<div>

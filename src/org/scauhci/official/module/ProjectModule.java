@@ -27,6 +27,7 @@ import org.scauhci.official.bean.Member;
 import org.scauhci.official.bean.MemberExtend;
 import org.scauhci.official.bean.Project;
 import org.scauhci.official.bean.ProjectMember;
+import org.scauhci.official.service.DepartmentService;
 import org.scauhci.official.service.MemberService;
 import org.scauhci.official.service.ProjectService;
 import org.scauhci.official.util.ImageZip;
@@ -39,11 +40,13 @@ public class ProjectModule {
 	MemberService memberService;
 	@Inject
 	ProjectService projectService;
+	@Inject
+	DepartmentService departmentService;
 
 	@At("/project/new")
 	@Ok("jsp:page.manage.project.add")
 	public void toAdd(HttpServletRequest req) {
-
+		req.setAttribute("departmentList", departmentService.getAll());
 	}
 
 	@At("/project/edit/?")
@@ -51,6 +54,7 @@ public class ProjectModule {
 	public void toEidt(int id, HttpServletRequest req) {
 		Project p = projectService.fetch(id);
 		req.setAttribute("project", p);
+		req.setAttribute("departmentList", departmentService.getAll());
 	}
 
 	@POST
@@ -90,7 +94,6 @@ public class ProjectModule {
 		}
 		map.put("state", "ok");
 		return map;
-
 	}
 
 	@GET
@@ -103,9 +106,9 @@ public class ProjectModule {
 		return map;
 	}
 
-	@At("/project/delete")
+	@At("/project/delete/?")
 	@Ok("json")
-	public Map delete(@Param("id") final int id) {
+	public Map delete( final int id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			Trans.exec(new Atom() {
@@ -129,9 +132,9 @@ public class ProjectModule {
 		return map;
 	}
 	
-	@At("/project/finish")
+	@At("/project/finish/?")
 	@Ok("json")
-	public Map finish(@Param("id") final int id) {
+	public Map finish(final int id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			Trans.exec(new Atom() {
@@ -201,6 +204,19 @@ public class ProjectModule {
 		map.put("list", projectService.listByState(state, memberService.dao()
 				.createPager(page, Config.MANAGER_PAGE_SIZE)));
 		map.put("count", projectService.countByState(state));
+		map.put("size", Config.MANAGER_PAGE_SIZE);
+		map.put("page", page);
+		return map;
+	}
+	
+	@At("/projects/free/?")
+	@Ok("jsp:page.manage.project.list")
+	public Map freeList(int page) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (page < 1)
+			page = 1;
+		map.put("list", projectService.listByFree(memberService.dao().createPager(page, Config.MANAGER_PAGE_SIZE)));
+		map.put("count", projectService.countByFree());
 		map.put("size", Config.MANAGER_PAGE_SIZE);
 		map.put("page", page);
 		return map;

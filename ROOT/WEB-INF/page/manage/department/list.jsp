@@ -6,13 +6,19 @@
 <div>
 <table border="1" >
 	<tr>
-		<td>项目名</td>
+		<td>部门名</td>
+		<td>部门成员</td>
+		<td>部门项目</td>
 		<td>详细信息</td>
+		<td>删除</td>
 	</tr>
 	 <c:forEach items="${obj.list}" var="department" varStatus="status">
 	 <tr>
 	 <td>${department.name}</td>
+	 <td><a href="javascript:void(0);" >成员</a></td>
+	 <td><a href="javascript:void(0);" >项目</a></td>
 	 <td><a href="/department/edit/${department.id}" >详细信息</a></td>
+	 <td><a href="javascript:void(0);" >删除</a></td>
 	 </tr>
 	 </c:forEach>
 

@@ -37,7 +37,8 @@
 					<li><a href="/members/type/2" >研究生</a></li>
 					<li><a href="/members/state/2" >毕业成员</a></li>
 					<li><a href="/members/state/1" >成员列表</a></li>
-					<li><a href="javascript:void(0);" >空闲成员</a></li>
+					<li><a href="/members/free" >空闲成员</a></li>
+					<li><a href="/members/admin" >管理员</a></li>
 					<li><a href="/members/state/4" >退出成员</a></li>
 				</ul>
 			</div>
@@ -46,9 +47,9 @@
 				<ul  class="menu-sub">
 					<li><a href="/project/new" >发布项目</a></li>
 					<li><a href="/projects/state/1" >项目列表</a></li>
-					<li><a href="javascript:void(0);" >完成项目</a></li>
-					<li><a href="javascript:void(0);" >空闲项目</a></li>
-					<li><a href="javascript:void(0);" >失败项目</a></li>
+					<li><a href="/projects/state/2" >完成项目</a></li>
+					<li><a href="/projects/free/1" >空闲项目</a></li>
+					<li><a href="/projects/state/3" >失败项目</a></li>
 				</ul>
 			</div>
 			<div class="menu-item">

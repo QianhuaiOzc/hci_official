@@ -64,6 +64,13 @@ public class ProjectService extends BasicMysqlService<Project>{
 		return getList(Cnd.where("state", "=", state), pager);
 	}
 	
+	public  int countByFree(){
+		Sql sql = dao().sqls().create("project.free.count");
+		sql.setCallback(Sqls.callback.integer());
+		dao().execute(sql);
+		return sql.getInt();
+	}
+	
 	public List<Project> listByFree(Pager pager){
 		Sql sql = dao().sqls().create("project.free");
 		sql.setCallback(Sqls.callback.entities());
@@ -73,14 +80,22 @@ public class ProjectService extends BasicMysqlService<Project>{
 		return sql.getList(Project.class);
 	}
 	
-	public List<Project> listByMember(int id,int state){
-		Sql sql = dao().sqls().create("project.free");
-		sql.params().set("id", id);
+	public List<Project> listByMember(int memberId,int state){
+		Sql sql = dao().sqls().create("project.list.by.member");
+		sql.params().set("memberId", memberId);
         sql.params().set("state", state);
 		sql.setCallback(Sqls.callback.entities());
 		sql.setEntity(dao().getEntity(Project.class));
 		dao().execute(sql);
 		return sql.getList(Project.class);
+	}
+	
+	public  int countByDepartment(int departmentId,int state){
+		return this.count(Cnd.where("department_id", "=", departmentId).andNot("state","=", state));
+	}
+	
+	public List<Project> listByDepartment(int departmentId,int state,Pager pager){
+		return this.getList(Cnd.where("department_id", "=", departmentId).andNot("state","=", state), pager);
 	}
 	
 	public int countByState(int state){		

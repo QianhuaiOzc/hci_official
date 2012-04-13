@@ -53,6 +53,13 @@
 <input type="text" name="project.name" value="${project.name }" >
 </div>
 
+<select name="project.departmentId">
+	<option value="0">请选择部门</option>
+	<c:forEach items="${departmentList}" var="department">
+	<option value="${department.id}" ${department.id==project.departmentId? "selected=\"selected \"" : ""} >${department.name}</option>
+	</c:forEach>
+</select>
+
 <div>
 <label>简介：</label>
 <textarea rows="4" cols="20" name="project.detail" >${project.detail }</textarea>

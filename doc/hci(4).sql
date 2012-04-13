@@ -54,6 +54,7 @@ CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `detail` varchar(500),
+  `state` int(11),
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
