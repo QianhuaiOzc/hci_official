@@ -31,7 +31,7 @@ COLLATE utf8_bin ;
 DROP TABLE IF EXISTS `project`;
 
 CREATE TABLE `project` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `detail` varchar(500),
   `state_date` date,
@@ -43,7 +43,9 @@ CREATE TABLE `project` (
 )
 ENGINE=MYISAM
 COMMENT = 'ÏîÄ¿'
-ROW_FORMAT=default;
+ROW_FORMAT=default
+CHARACTER SET utf8
+COLLATE utf8_bin ;
 
 -- Drop table department
 DROP TABLE IF EXISTS `department`;
@@ -52,6 +54,7 @@ CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `detail` varchar(500),
+  `state` int(11),
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM

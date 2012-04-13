@@ -7,36 +7,36 @@ public class ReportFile {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("report_id")
-	private Integer reportId;
+	private int reportId;
 	@Column("file_id")
-	private Integer fileId;
+	private int fileId;
 
 	@One(target = Report.class, field = "reportId")
 	private Report report;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getReportId() {
+	public int getReportId() {
 		return reportId;
 	}
 
-	public void setReportId(Integer reportId) {
+	public void setReportId(int reportId) {
 		this.reportId = reportId;
 	}
 
-	public Integer getFileId() {
+	public int getFileId() {
 		return fileId;
 	}
 
-	public void setFileId(Integer fileId) {
+	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
 

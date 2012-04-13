@@ -7,17 +7,17 @@ public class Attendance {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("meeting_id")
-	private Integer meetingId;
+	private int meetingId;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 	@Column("state")
-	private Integer state;
+	private int state;
 	@Column("reason")
 	private String reason;
 	@Column("is_attend")
-	private Integer isAttend;
+	private int isAttend;
 
 	@One(target = Member.class, field = "memberId")
 	private Member member;
@@ -25,35 +25,35 @@ public class Attendance {
 	@One(target = Meeting.class, field = "meetingId")
 	private Meeting meeting;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getMeetingId() {
+	public int getMeetingId() {
 		return meetingId;
 	}
 
-	public void setMeetingId(Integer meetingId) {
+	public void setMeetingId(int meetingId) {
 		this.meetingId = meetingId;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -65,11 +65,11 @@ public class Attendance {
 		this.reason = reason;
 	}
 
-	public Integer getIsAttend() {
+	public int getIsAttend() {
 		return isAttend;
 	}
 
-	public void setIsAttend(Integer isAttend) {
+	public void setIsAttend(int isAttend) {
 		this.isAttend = isAttend;
 	}
 

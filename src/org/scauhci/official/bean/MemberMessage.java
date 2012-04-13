@@ -7,19 +7,19 @@ public class MemberMessage {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 	@Column("message_id")
-	private Integer messageId;
+	private int messageId;
 	@Column("state")
-	private Integer state;
+	private int state;
 	@Column("read_time")
 	private java.util.Date readTime;
 	@Column("reply")
 	private String reply;
 	@Column("type")
-	private Integer type;
+	private int type;
 
 	@One(target = Member.class, field = "memberId")
 	private Member member;
@@ -27,35 +27,35 @@ public class MemberMessage {
 	@One(target = Message.class, field = "messageId")
 	private Message message;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public Integer getMessageId() {
+	public int getMessageId() {
 		return messageId;
 	}
 
-	public void setMessageId(Integer messageId) {
+	public void setMessageId(int messageId) {
 		this.messageId = messageId;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -75,11 +75,11 @@ public class MemberMessage {
 		this.reply = reply;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

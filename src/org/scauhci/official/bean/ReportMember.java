@@ -7,11 +7,11 @@ public class ReportMember {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 	@Column("report_id")
-	private Integer reportId;
+	private int reportId;
 
 	@One(target = Member.class, field = "memberId")
 	private Member member;
@@ -19,27 +19,27 @@ public class ReportMember {
 	@One(target = Report.class, field = "reportId")
 	private Report report;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public Integer getReportId() {
+	public int getReportId() {
 		return reportId;
 	}
 
-	public void setReportId(Integer reportId) {
+	public void setReportId(int reportId) {
 		this.reportId = reportId;
 	}
 

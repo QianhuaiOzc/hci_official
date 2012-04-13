@@ -9,15 +9,15 @@ public class Message {
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("type")
-	private Integer type;
+	private int type;
 	@Column("content")
 	private String content;
 	@Column("date")
 	private java.util.Date date;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 
 	@One(target = Member.class, field = "memberId")
 	private Member member;
@@ -25,19 +25,19 @@ public class Message {
 	@ManyMany(target = Member.class, relation = "member_message", from = "messageId", to = "memberId")
 	private List<Member> members;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -57,11 +57,11 @@ public class Message {
 		this.date = date;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 

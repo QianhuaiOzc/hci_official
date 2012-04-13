@@ -4,23 +4,23 @@
 
 <body>
 <div>
-<table border="1">
+<table border="1" >
 	<tr>
-		<td>头像</td>
-		<td>帐号</td>
-		<td>姓名</td>
-		<td>项目</td>
+		<td>图标</td>
+		<td>项目名</td>
+		<td>项目成员</td>
 		<td>详细信息</td>
-		<td>退出</td>
+		<td>结题</td>
+		<td>取消</td>
 	</tr>
-	 <c:forEach items="${obj.list}" var="member" varStatus="status">
+	 <c:forEach items="${obj.list}" var="project" varStatus="status">
 	 <tr>
-	 <td><img src="/member/avatar/${member.studentId }?thumb=true" alt="" ></td>
-	 <td>${member.studentId}</td>
-	 <td>${member.name}</td>
-	 <td><a href="/member/projects/${member.id}" >项目</a></td>
-	 <td><a href="/member/edit/${member.id}" >详细信息</a></td>
-	 <td><a href="/member/delete/${member.id}" >退出</a></td>
+	 <td><img src="/project/avatar/${project.id }?thumb=true" alt="" ></td>
+	 <td>${project.name}</td>
+	 <td><a href="/project/members/${project.id}" >项目成员</a></td>
+	 <td><a href="/project/edit/${project.id}" >详细信息</a></td>
+	 <td><a href="/project/finish/${project.id}" >结题</a></td>
+	 <td><a href="/project/delete/${project.id}" >取消</a></td>
 	 </tr>
 	 </c:forEach>
 

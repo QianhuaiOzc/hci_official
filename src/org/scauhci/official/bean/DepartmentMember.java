@@ -4,52 +4,56 @@ import org.nutz.dao.entity.annotation.*;
 
 @Table("department_member")
 public class DepartmentMember {
+	
+	public static int TYPE_MEMBER=1;
+	
+	public static int TYPE_CHIEF=2;
 
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("department_id")
-	private Integer departmentId;
+	private int departmentId;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 	@Column("type")
-	private Integer type;
+	private int type;
 
 	@One(target = Member.class, field = "memberId")
 	private Member member;
 
-	@One(target = Department.class, field = "meetingId")
+	@One(target = Department.class, field = "departmentId")
 	private Department deparment;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(Integer departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

@@ -4,46 +4,52 @@ import org.nutz.dao.entity.annotation.*;
 
 @Table("project_member")
 public class ProjectMember {
-
+	
+	//项目成员
+	public static int TYPE_MEMBER=1;
+	//项目组长
+	public static int TYPE_LEADER=2;
+	
+	
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("project_id")
-	private Integer projectId;
+	private int projectId;
 	@Column("member_id")
-	private Integer memberId;
+	private int memberId;
 	@Column("job")
 	private String job;
 	@Column("type")
-	private Integer type;
+	private int type=ProjectMember.TYPE_MEMBER;
 
 	@One(target = Project.class, field = "projectId")
 	private Project project;
 
-	@One(target = Member.class, field = "projectId")
+	@One(target = Member.class, field = "memberId")
 	private Member member;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getProjectId() {
+	public int getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Integer projectId) {
+	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
 
-	public Integer getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(Integer memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
@@ -55,11 +61,11 @@ public class ProjectMember {
 		this.job = job;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

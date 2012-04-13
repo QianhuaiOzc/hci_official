@@ -24,8 +24,12 @@ import org.nutz.mvc.upload.UploadAdaptor;
 import org.nutz.trans.Atom;
 import org.nutz.trans.Trans;
 import org.scauhci.official.Config;
+import org.scauhci.official.bean.DepartmentMember;
 import org.scauhci.official.bean.Member;
 import org.scauhci.official.bean.MemberExtend;
+import org.scauhci.official.bean.Project;
+import org.scauhci.official.bean.ProjectMember;
+import org.scauhci.official.service.DepartmentService;
 import org.scauhci.official.service.MemberService;
 import org.scauhci.official.util.ImageZip;
 import org.scauhci.official.util.PrintImage;
@@ -37,11 +41,13 @@ public class MemberModule {
 	
 	@Inject
 	MemberService memberService;
+	@Inject
+	DepartmentService departmentService;
 	
 	@At("/member/new")
 	@Ok("jsp:page.manage.member.add")
 	public void toAdd(HttpServletRequest req){
-		
+		req.setAttribute("departmentList", departmentService.getAll());
 	}
 	
 	@At("/member/edit/?")
@@ -49,14 +55,17 @@ public class MemberModule {
 	public void toEidt(int id, HttpServletRequest req){
 		 Member member=memberService.getMember(id);
 		 MemberExtend me=member.getExtend();
+		 DepartmentMember dm=departmentService.getDepartmentMember(member.getId());
 		 req.setAttribute("member", member);
 		 req.setAttribute("extend", me);
+		 req.setAttribute("departmentList", departmentService.getAll());
+		 req.setAttribute("departmentMember", dm);
 	}
 	
 	@POST
 	@At("/member/?")
 	@Ok("json")
-	public Map eidt(int id, @Param("::member.") final Member member,@Param("::extend.") final MemberExtend me,  HttpServletRequest req){
+	public Map eidt(int id, @Param("::member.") final Member member,@Param("::extend.") final MemberExtend me,  @Param("::departmentMember.") final DepartmentMember dm,HttpServletRequest req){
 		Map<String,Object> map=new HashMap<String,Object>();
 		try{
 		if(id==0){
@@ -66,14 +75,21 @@ public class MemberModule {
                 	member.setPassword(Utils.getMD5(Config.INIT_PASSWORD));
                     member.setExtend(me);
                     memberService.insertMember(member);
+                    dm.setMemberId(member.getId());
+                    departmentService.addMember(dm);
                  }
              });		
 		}else{			
 			 Trans.exec(new Atom() {
                  @Override
                  public void run() {
+                	member.setPassword(memberService.fetch(member.getId()).getPassword());
                     member.setExtend(me);
+                    member.setExtendId(me.getId());
+                    dm.setMemberId(member.getId());
+                    departmentService.updateMember(dm);
                     memberService.updateAll(member);
+                    
                  }
              });
 		}
@@ -107,7 +123,9 @@ public class MemberModule {
 			Trans.exec(new Atom() {
                 @Override
                 public void run() {
-                  memberService.deleteMember(id);
+                	Member m=memberService.fetch(id);
+            		m.setState(Member.STATE_LEAVE);
+            		memberService.update(m);
                 }
             });		
 		}catch(Exception e){
@@ -151,12 +169,12 @@ public class MemberModule {
 	@GET
 	@At("/member/avatar/?")
 	public void avatar(String id,@Param("thumb") boolean thumb,HttpServletRequest req,HttpServletResponse res){
-		PrintImage.writePhoto(Config.avatarPath, id, thumb, req, res);
+		PrintImage.writePhoto(Config.avatarPath, id, thumb,Config.defaultAvatar, req, res);
 	}
 	
 	@At("/members/state/?")
 	@Ok("jsp:page.manage.member.list")
-	public Map stateList(int state,int page){			
+	public Map stateList(int state,@Param("page") int page){			
 		Map<String,Object> map = new HashMap<String,Object>();	
 		if(page<1)
 			page=1;
@@ -169,7 +187,7 @@ public class MemberModule {
 	
 	@At("/members/type/?")
 	@Ok("jsp:page.manage.member.list")
-	public Map typeList(int type,int page){
+	public Map typeList(int type,@Param("page") int page){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(page<1)
 			page=1;
@@ -182,7 +200,7 @@ public class MemberModule {
 	
 	@At("/members/admin")
 	@Ok("jsp:page.manage.member.list")
-	public Map adminList(int page){
+	public Map adminList(@Param("page") int page){
 		Map<String,Object> map = new HashMap<String,Object>();	
 		if(page<1)
 			page=1;
@@ -193,5 +211,26 @@ public class MemberModule {
 	    return map;
 	}
 	
+	@At("/members/free")
+	@Ok("jsp:page.manage.member.list")
+	public Map freeList(@Param("page") int page){
+		Map<String,Object> map = new HashMap<String,Object>();	
+		if(page<1)
+			page=1;
+		map.put("list", memberService.listByFree( memberService.dao().createPager(page, Config.MANAGER_PAGE_SIZE)));	
+		map.put("count", memberService.countByFree());
+	    map.put("size", Config.MANAGER_PAGE_SIZE);
+	    map.put("page", page);
+	    return map;
+	}
+	
+	@At("/member/projects/?")
+	@Ok("jsp:page.manage.member.projects")
+	public Map memberList(int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("finishedList", memberService.project(id, Project.STATE_FINISHED));
+		map.put("developingList", memberService.project(id, Project.STATE_DEVELOPING));
+		return map;
+	}
 
 }
