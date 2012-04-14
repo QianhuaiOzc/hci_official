@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 public class TokenUtil {
 	public static String create(HttpSession session) {
 
+		@SuppressWarnings("unchecked")
 		Set<String> tokens = (Set<String>) session.getAttribute("TOKEN");
 		if (tokens == null) {
 			tokens = new HashSet<String>();

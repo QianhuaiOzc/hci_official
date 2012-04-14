@@ -8,15 +8,15 @@ import org.nutz.dao.entity.annotation.*;
 public class Report {
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("project_id")
-	private Integer projectId;
+	private int projectId;
 	@Column("meeting_id")
-	private Integer meetingId;
+	private int meetingId;
 	@Column("comment")
 	private String comment;
 	@Column("is_report")
-	private Integer isReport;
+	private int isReport;
 
 	@One(target = Project.class, field = "projectId")
 	private Project project;
@@ -30,27 +30,27 @@ public class Report {
 	@ManyMany(target = Member.class, relation = "report_member", from = "reportId", to = "memberId")
 	private List<Member> members;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getProjectId() {
+	public int getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Integer projectId) {
+	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
 
-	public Integer getMeetingId() {
+	public int getMeetingId() {
 		return meetingId;
 	}
 
-	public void setMeetingId(Integer meetingId) {
+	public void setMeetingId(int meetingId) {
 		this.meetingId = meetingId;
 	}
 
@@ -62,11 +62,11 @@ public class Report {
 		this.comment = comment;
 	}
 
-	public Integer getIsReport() {
+	public int getIsReport() {
 		return isReport;
 	}
 
-	public void setIsReport(Integer isReport) {
+	public void setIsReport(int isReport) {
 		this.isReport = isReport;
 	}
 

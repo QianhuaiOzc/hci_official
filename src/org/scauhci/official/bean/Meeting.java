@@ -8,11 +8,11 @@ import org.nutz.dao.entity.annotation.*;
 public class Meeting {
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("date")
 	private java.util.Date date;
 	@Column("state")
-	private Integer state;
+	private int state;
 
 	@Many(target = Attendance.class, field = "meetingId")
 	private List<Attendance> attendances;
@@ -26,11 +26,11 @@ public class Meeting {
 	@ManyMany(target = Project.class, relation = "report", from = "meetingId", to = "projectId")
 	private List<Project> projects;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -42,11 +42,11 @@ public class Meeting {
 		this.date = date;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 

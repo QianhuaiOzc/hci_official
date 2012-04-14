@@ -19,7 +19,7 @@ public class Project {
 	
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("name")
 	private String name;
 	@Column("detail")
@@ -47,11 +47,11 @@ public class Project {
 	@One(target = Department.class, field = "departmentId")
 	private Department department;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -87,11 +87,11 @@ public class Project {
 		this.endDate = endDate;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -103,11 +103,11 @@ public class Project {
 		this.isPublic = isPublic;
 	}
 
-	public Integer getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(Integer departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 

@@ -6,7 +6,7 @@ import org.nutz.dao.entity.annotation.*;
 public class File {
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("path")
 	private String path;
 	@Column("name")
@@ -16,13 +16,13 @@ public class File {
 	@Column("time")
 	private java.util.Date time;
 	@Column("is_public")
-	private Integer isPublic;
+	private int isPublic;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -58,11 +58,11 @@ public class File {
 		this.time = time;
 	}
 
-	public Integer getIsPublic() {
+	public int getIsPublic() {
 		return isPublic;
 	}
 
-	public void setIsPublic(Integer isPublic) {
+	public void setIsPublic(int isPublic) {
 		this.isPublic = isPublic;
 	}
 

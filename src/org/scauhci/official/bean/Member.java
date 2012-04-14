@@ -34,7 +34,7 @@ public class Member {
 	
 	@Id
 	@Column("id")
-	private Integer id;
+	private int id;
 	@Column("student_id")
 	private String studentId;
 	@Column("name")
@@ -42,11 +42,11 @@ public class Member {
 	@Column("password")
 	private String password;
 	@Column("state")
-	private Integer state;
+	private int state;
 	@Column("role")
-	private Integer role;
+	private int role;
 	@Column("type")
-	private Integer type;
+	private int type;
 	@Column("is_public")
 	private boolean isPublic;
 	@Column("extend_id")
@@ -58,11 +58,11 @@ public class Member {
 	@One(target = MemberExtend.class, field = "extendId")
 	private MemberExtend extend;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -90,27 +90,27 @@ public class Member {
 		this.password = password;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
-	public Integer getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

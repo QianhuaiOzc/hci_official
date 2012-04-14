@@ -9,8 +9,24 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * @author jiang
+ *
+ */
+
 public class PrintImage {
-	public static  void writePhoto(String photoBase, String name,boolean thumb, HttpServletRequest request, HttpServletResponse response) {
+	
+	/**
+	 * 
+	 * @param photoBase 相片路径
+	 * @param name 相片名字
+	 * @param thumb 是否为压缩
+	 * @param defaulImage 默认图片文件
+	 * @param request 
+	 * @param response
+	 */
+	public static  void writePhoto(String photoBase, String name,boolean thumb, String defaulImage,HttpServletRequest request, HttpServletResponse response) {
 
         if (!photoBase.endsWith("/")) {
             photoBase += '/';
@@ -29,12 +45,12 @@ public class PrintImage {
                 return;
             }
         }
-        write(new File(photoBase +  "user.jpg"), response, request.getSession().getServletContext());
+        write(new File(defaulImage), response, request.getSession().getServletContext());
 
     }
 
     private static  void write(File file, HttpServletResponse response, ServletContext servletContext) {
-        response.setContentType(getMIME(file.getAbsolutePath(), servletContext));
+        response.setContentType("image/jpeg");
         response.setContentLength((int) file.length());
         OutputStream out = null;
         InputStream in = null;
@@ -66,7 +82,4 @@ public class PrintImage {
         }
     }
 
-    private static  String getMIME(String photo, ServletContext servletContext) {
-        return servletContext.getMimeType(photo);
-    }
 }
