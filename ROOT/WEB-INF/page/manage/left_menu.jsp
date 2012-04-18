@@ -62,8 +62,8 @@
 			<div class="menu-item">
 				<a class="menu-btn" href="javascript:void(0);">例会</a>
 				<ul  class="menu-sub">
-					<li><a href="javascript:void(0);" >发布例会</a></li>
-					<li><a href="javascript:void(0);" >例会列表</a></li>
+					<li><a href="${base }/meeting/new" >发布例会</a></li>
+					<li><a href="${base }/meeting/list" >例会列表</a></li>
 				</ul>
 			</div>
 			<div class="menu-item">

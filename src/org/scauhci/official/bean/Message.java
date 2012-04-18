@@ -6,6 +6,9 @@ import org.nutz.dao.entity.annotation.*;
 
 @Table("message")
 public class Message {
+	
+	public static final int TYPE_MEETING_NOTICE = 0;
+	public static final int TYPE_MEETING_PROJECT_NOTICE = 1;
 
 	@Id
 	@Column("id")

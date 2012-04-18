@@ -48,4 +48,10 @@ public class ReportFile {
 		this.report = report;
 	}
 
+	@Override
+	public String toString() {
+		return "ReportFile [id=" + id + ", reportId=" + reportId + ", fileId="
+				+ fileId + ", report=" + report + "]";
+	}
+
 }

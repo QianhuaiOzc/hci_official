@@ -59,4 +59,11 @@ public class ReportMember {
 		this.report = report;
 	}
 
+	@Override
+	public String toString() {
+		return "ReportMember [id=" + id + ", memberId=" + memberId
+				+ ", reportId=" + reportId + ", member=" + member + ", report="
+				+ report + "]";
+	}
+
 }

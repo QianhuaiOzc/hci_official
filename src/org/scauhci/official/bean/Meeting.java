@@ -9,6 +9,8 @@ public class Meeting {
 	@Id
 	@Column("id")
 	private int id;
+	@Column("title")
+	private String title;
 	@Column("date")
 	private java.util.Date date;
 	@Column("state")
@@ -32,6 +34,14 @@ public class Meeting {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public java.util.Date getDate() {
@@ -80,6 +90,14 @@ public class Meeting {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	@Override
+	public String toString() {
+		return "Meeting [id=" + id + ", title=" + title + ", date=" + date
+				+ ", state=" + state + ", attendances=" + attendances
+				+ ", reports=" + reports + ", members=" + members
+				+ ", projects=" + projects + "]";
 	}
 
 }

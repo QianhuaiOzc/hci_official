@@ -13,8 +13,8 @@ public class BasicMysqlService<T> extends IdEntityService<T> {
         super(dao);
     }
 	
-	public void add(T t) {
-        dao().insert(t);
+	public T add(T t) {
+        return dao().insert(t);
     }
 
     public void update(T t) {

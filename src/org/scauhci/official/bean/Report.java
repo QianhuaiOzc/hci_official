@@ -102,4 +102,12 @@ public class Report {
 		this.members = members;
 	}
 
+	@Override
+	public String toString() {
+		return "Report [id=" + id + ", projectId=" + projectId + ", meetingId="
+				+ meetingId + ", comment=" + comment + ", isReport=" + isReport
+				+ ", project=" + project + ", meeting=" + meeting + ", files="
+				+ files + ", members=" + members + "]";
+	}
+
 }

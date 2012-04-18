@@ -5,6 +5,11 @@ import org.nutz.dao.entity.annotation.*;
 @Table("attendance")
 public class Attendance {
 
+	public static final int STATE_NOT_REPLY = 0;
+	public static final int STATE_ATTEND = 1;
+	public static final int STATE_ABSENCE = 2;
+	public static final int STATE_LEAVE = 3;
+
 	@Id
 	@Column("id")
 	private int id;
@@ -87,6 +92,14 @@ public class Attendance {
 
 	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
+	}
+
+	@Override
+	public String toString() {
+		return "Attendance [id=" + id + ", meetingId=" + meetingId
+				+ ", memberId=" + memberId + ", state=" + state + ", reason="
+				+ reason + ", isAttend=" + isAttend + ", member=" + member
+				+ ", meeting=" + meeting + "]";
 	}
 
 }
