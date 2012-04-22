@@ -40,6 +40,7 @@
 					<li><a href="/members/free" >空闲成员</a></li>
 					<li><a href="/members/admin" >管理员</a></li>
 					<li><a href="/members/state/4" >退出成员</a></li>
+					<li><a href="/member_search.html" >查找</a></li>
 				</ul>
 			</div>
 			<div class="menu-item">

@@ -24,7 +24,7 @@ public class ImageZip {
 			return false;
 		}
 		/** 对服务器上的临时文件进行处理 */
-		BufferedImage sourceImage = Images.read(oldFile);
+		BufferedImage sourceImage = Images.read(new File(oldFile));
 		if (sourceImage == null) {
 			return false;
 		}
