@@ -1,0 +1,5 @@
+1.meeting表中的state是一个状态,标记是否已被删除
+2.数据库转换,把原有的在derby上的数据转换到mysql上
+
+3.meeting上增加一个属性,title
+4.BasicMysqlService中的add方法,修改其返回值,由返回void改为返回T
