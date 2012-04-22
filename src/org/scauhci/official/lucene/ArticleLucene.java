@@ -2,26 +2,15 @@ package org.scauhci.official.lucene;
 
 import java.util.List;
 
+import org.nutz.dao.Dao;
 import org.scauhci.official.bean.Article;
 
-public class ArticleLucene implements BaseLucene<Article> {
+public class ArticleLucene extends BaseLucene<Article> {
 
-	@Override
-	public void BuildIndex(String dirPath) {
-		// TODO Auto-generated method stub
-		
+	public ArticleLucene(Dao dao) {
+		super(dao);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public List<Article> SearchIndex(String value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Article> SearchIndex(String field, String value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

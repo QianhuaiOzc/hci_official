@@ -30,6 +30,7 @@ import org.scauhci.official.service.MemberService;
 		"org.scauhci.official",
 		"org.scauhci.official.module",
 		"org.scauhci.official.dao",
+		"org.scauhci.official.lucene",
 		"org.scauhci.official.service"})
 @Encoding(input = "UTF-8", output = "UTF-8")
 @Views({AjaxViewMaker.class, SmartViewMaker.class})

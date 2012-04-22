@@ -6,7 +6,7 @@ import java.util.List;
 import org.nutz.dao.entity.annotation.*;
 
 @Table("project")
-public class Project {
+public class Project implements java.io.Serializable{
 	
 	//项目开发中
 	public static int STATE_DEVELOPING=1;
@@ -36,13 +36,13 @@ public class Project {
 	private int departmentId;
 
 	@Many(target = Report.class, field = "projectId")
-	private List<Report> reports;
+	private  transient List<Report> reports;
 
 	@Many(target = ProjectMember.class, field = "projectId")
-	private List<ProjectMember> projectMembers;
+	private transient  List<ProjectMember> projectMembers;
 
-	@ManyMany(target = Member.class, relation = "project_member", from = "projectId", to = "memberId")
-	private List<Member> members;
+	@ManyMany(target = Member.class, relation = "project_member", from = "project_id", to = "member_id")
+	private  transient List<Member> members;
 
 	@One(target = Department.class, field = "departmentId")
 	private Department department;

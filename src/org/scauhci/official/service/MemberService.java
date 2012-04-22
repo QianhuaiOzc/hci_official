@@ -111,4 +111,27 @@ public class MemberService extends BasicMysqlService<Member>{
 		return sql.getList(Project.class);
 	}
 	
+	public void addPassword(int memberId,String password){
+		Sql sql = dao().sqls().create("member.password.add");
+		sql.params().set("password", password);
+		sql.params().set("memberId", memberId);
+		dao().execute(sql);
+	}
+	
+	public void updatePassword(int memberId,String password){
+		Sql sql = dao().sqls().create("member.password.update");
+		sql.params().set("password", password);
+		sql.params().set("memberId", memberId);
+		dao().execute(sql);
+	}
+	
+	public String getPassword(int memberId){
+		Sql sql = dao().sqls().create("member.password.update");
+		sql.setCallback(Sqls.callback.str());
+		sql.params().set("memberId", memberId);
+		dao().execute(sql);
+		return sql.getString();
+	}
+	
+	
 }

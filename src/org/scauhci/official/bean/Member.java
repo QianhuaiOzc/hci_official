@@ -5,7 +5,7 @@ import java.util.List;
 import org.nutz.dao.entity.annotation.*;
 
 @Table("member")
-public class Member {
+public class Member implements java.io.Serializable{
 
 	// 在职
 	public static final int STATE_ON_THE_JOB = 1;
@@ -39,8 +39,6 @@ public class Member {
 	private String studentId;
 	@Column("name")
 	private String name;
-	@Column("password")
-	private String password;
 	@Column("state")
 	private int state;
 	@Column("role")
@@ -53,8 +51,8 @@ public class Member {
 	private int extendId;
 	
 
-	@ManyMany(target = Project.class, relation = "project_member", from = "memberId", to = "projectId")
-	private List<Project> projects;
+	@ManyMany(target = Project.class, relation = "project_member", from = "member_id", to = "project_id")
+	private transient List<Project> projects;
 	@One(target = MemberExtend.class, field = "extendId")
 	private MemberExtend extend;
 
@@ -82,13 +80,6 @@ public class Member {
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public int getState() {
 		return state;
