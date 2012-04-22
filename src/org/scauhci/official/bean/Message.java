@@ -25,7 +25,7 @@ public class Message {
 	@One(target = Member.class, field = "memberId")
 	private Member member;
 
-	@ManyMany(target = Member.class, relation = "member_message", from = "messageId", to = "memberId")
+	@ManyMany(target = Member.class, relation = "member_message", from = "message_id", to = "member_id")
 	private List<Member> members;
 
 	public int getId() {
