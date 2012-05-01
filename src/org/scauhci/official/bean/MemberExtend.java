@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.nutz.dao.entity.annotation.*;
 
 @Table("member_extend")
-public class MemberExtend {
+public class MemberExtend implements java.io.Serializable{
 
 	@Id
 	@Column("id")

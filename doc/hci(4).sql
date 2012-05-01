@@ -1,5 +1,5 @@
 -- =============================================================================
--- Diagram Name: Êı¾İ¿âÉè¼Æ
+-- Diagram Name: æ•°æ®åº“è®¾è®¡
 -- Created on: 2012/3/17 11:07:11
 -- Diagram Version:
 -- =============================================================================
@@ -10,19 +10,33 @@ DROP TABLE IF EXISTS `member`;
 
 CREATE TABLE `member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(12) NOT NULL COMMENT 'Ñ§ºÅ£¬µÇÂ½ÕËºÅ',
+  `student_id` varchar(12) NOT NULL COMMENT 'å­¦å·ï¼Œç™»é™†è´¦å·',
   `name` varchar(8) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `state` int(11) COMMENT '±íÊ¾ÔÚÖ°£¬ÍË³ö',
-  `role` int(11) COMMENT '½ÇÉ«',
-  `type` int(11) NOT NULL COMMENT '±íÊ¾ÀÏÊ¦£¬Ñ§Éú£¬±ÏÒµ',
-  `is_public` tinyint(4) NOT NULL COMMENT 'ÊÇ·ñ¶ÔÍâ¹«¿ª',
+  `state` int(11) COMMENT 'è¡¨ç¤ºåœ¨èŒï¼Œé€€å‡º',
+  `role` int(11) COMMENT 'è§’è‰²',
+  `type` int(11) NOT NULL COMMENT 'è¡¨ç¤ºè€å¸ˆï¼Œå­¦ç”Ÿï¼Œæ¯•ä¸š',
+  `is_public` tinyint(4) NOT NULL COMMENT 'æ˜¯å¦å¯¹å¤–å…¬å¼€',
   `extend_id` int(11) NOT NULL,
   PRIMARY KEY(`id`),
   UNIQUE INDEX `student_id`(`student_id`)
 )
 ENGINE=MYISAM
-COMMENT = '³ÉÔ±'
+COMMENT = 'æˆå‘˜'
+ROW_FORMAT=default
+CHARACTER SET utf8
+COLLATE utf8_bin ;
+
+DROP TABLE IF EXISTS `password`;
+
+CREATE TABLE `password`(
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `member_id` int(11) NOT NULL,
+    `password` varchar(32) NOT NULL,
+    PRIMARY KEY(`id`),
+    UNIQUE INDEX `member_id`(`member_id`)
+)
+ENGINE=MYISAM
+COMMENT = 'å¯†ç '
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -36,13 +50,13 @@ CREATE TABLE `project` (
   `detail` varchar(500),
   `state_date` date,
   `end_date` date,
-  `state` int(11) COMMENT '±íÊ¾ÕıÔÚ½øĞĞ£¬½áÌâ',
-  `is_public` tinyint(4) NOT NULL COMMENT 'ÊÇ·ñ¶ÔÍâ¹«¿ª',
+  `state` int(11) COMMENT 'è¡¨ç¤ºæ­£åœ¨è¿›è¡Œï¼Œç»“é¢˜',
+  `is_public` tinyint(4) NOT NULL COMMENT 'æ˜¯å¦å¯¹å¤–å…¬å¼€',
   `department_id` int(11),
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = 'ÏîÄ¿'
+COMMENT = 'é¡¹ç›®'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -58,7 +72,7 @@ CREATE TABLE `department` (
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = '²¿ÃÅ'
+COMMENT = 'éƒ¨é—¨'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -68,12 +82,13 @@ DROP TABLE IF EXISTS `meeting`;
 
 CREATE TABLE `meeting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64),
   `date` date NOT NULL,
-  `state` int(11) COMMENT 'ÊÇ·ñÉ¾³ı',
+  `state` int(11) COMMENT 'æ˜¯å¦åˆ é™¤',
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = '»áÒé'
+COMMENT = 'ä¼šè®®'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -85,13 +100,13 @@ CREATE TABLE `project_member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `job` varchar(100) COMMENT 'Ö°Ôğ',
-  `type` int(11) NOT NULL COMMENT '±íÊ¾³ÉÔ±»ò×é³¤',
+  `job` varchar(100) COMMENT 'èŒè´£',
+  `type` int(11) NOT NULL COMMENT 'è¡¨ç¤ºæˆå‘˜æˆ–ç»„é•¿',
   PRIMARY KEY(`id`),
   UNIQUE INDEX `key`(`project_id`, `member_id`)
 )
 ENGINE=MYISAM
-COMMENT = 'ÏîÄ¿³ÉÔ±'
+COMMENT = 'é¡¹ç›®æˆå‘˜'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -103,12 +118,12 @@ CREATE TABLE `department_member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `department_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `type` int(11) NOT NULL COMMENT '±íÊ¾³ÉÔ±»ò¸ºÔğÈË',
+  `type` int(11) NOT NULL COMMENT 'è¡¨ç¤ºæˆå‘˜æˆ–è´Ÿè´£äºº',
   PRIMARY KEY(`id`),
   UNIQUE INDEX `key`(`department_id`, `member_id`)
 )
 ENGINE=MYISAM
-COMMENT = '²¿ÃÅ³ÉÔ±'
+COMMENT = 'éƒ¨é—¨æˆå‘˜'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -120,14 +135,14 @@ CREATE TABLE `attendance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `meeting_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `state` int(11) NOT NULL COMMENT '³öÏ¯×´Ì¬',
+  `state` int(11) NOT NULL COMMENT 'å‡ºå¸­çŠ¶æ€',
   `reason` varchar(100),
-  `is_attend` int(11) COMMENT 'ÊÇ·ñ²Î¼Ó',
+  `is_attend` int(11) COMMENT 'æ˜¯å¦å‚åŠ ',
   PRIMARY KEY(`id`),
   UNIQUE INDEX `key`(`meeting_id`, `member_id`)
 )
 ENGINE=MYISAM
-COMMENT = '¿¼ÇÚ'
+COMMENT = 'è€ƒå‹¤'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -139,13 +154,13 @@ CREATE TABLE `report` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
   `meeting_id` int(11) NOT NULL,
-  `comment` varchar(500) COMMENT '»ã±¨¼ÇÂ¼',
-  `is_report` int(11) COMMENT 'ÊÇ·ñ²ÎÓë»ã±¨',
+  `comment` varchar(500) COMMENT 'æ±‡æŠ¥è®°å½•',
+  `is_report` int(11) COMMENT 'æ˜¯å¦å‚ä¸æ±‡æŠ¥',
   PRIMARY KEY(`id`),
   UNIQUE INDEX `key`(`project_id`, `meeting_id`)
 )
 ENGINE=MYISAM
-COMMENT = 'ÏîÄ¿»ã±¨'
+COMMENT = 'é¡¹ç›®æ±‡æŠ¥'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -171,7 +186,7 @@ CREATE TABLE `member_extend` (
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = '³ÉÔ±ÏêÏ¸×ÊÁÏ'
+COMMENT = 'æˆå‘˜è¯¦ç»†èµ„æ–™'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -181,14 +196,14 @@ DROP TABLE IF EXISTS `message`;
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL COMMENT 'ĞÅÏ¢ÀàĞÍ',
+  `type` int(11) NOT NULL COMMENT 'ä¿¡æ¯ç±»å‹',
   `content` text,
   `date` date NOT NULL,
   `member_id` int(11) NOT NULL,
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = 'ÏûÏ¢'
+COMMENT = 'æ¶ˆæ¯'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -200,15 +215,15 @@ CREATE TABLE `member_message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `message_id` int(11) NOT NULL,
-  `state` int(11) NOT NULL COMMENT '±íÊ¾¶Á·ñ',
+  `state` int(11) NOT NULL COMMENT 'è¡¨ç¤ºè¯»å¦',
   `read_time` timestamp,
-  `reply` varchar(512) COMMENT 'ĞÅÏ¢»Ø¸´',
-  `type` int(11) COMMENT 'ĞÅÏ¢ÀàĞÍ',
+  `reply` varchar(512) COMMENT 'ä¿¡æ¯å›å¤',
+  `type` int(11) COMMENT 'ä¿¡æ¯ç±»å‹',
   PRIMARY KEY(`id`),
   UNIQUE INDEX `key`(`member_id`, `message_id`)
 )
 ENGINE=MYISAM
-COMMENT = '³ÉÔ±ÏûÏ¢'
+COMMENT = 'æˆå‘˜æ¶ˆæ¯'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -226,7 +241,7 @@ CREATE TABLE `file` (
   PRIMARY KEY(`id`)
 )
 ENGINE=MYISAM
-COMMENT = 'ÎÄ¼ş'
+COMMENT = 'æ–‡ä»¶'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -242,7 +257,7 @@ CREATE TABLE `report_file` (
   INDEX `key`(`report_id`, `file_id`)
 )
 ENGINE=MYISAM
-COMMENT = '»ã±¨ÎÄ¼ş'
+COMMENT = 'æ±‡æŠ¥æ–‡ä»¶'
 ROW_FORMAT=default
 CHARACTER SET utf8
 COLLATE utf8_bin ;
@@ -361,6 +376,12 @@ ALTER TABLE `report_member` ADD
 
 ALTER TABLE `report_member` ADD
   CONSTRAINT `Ref_27` FOREIGN KEY (`member_id`)
+    REFERENCES `member`(`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `password` ADD
+  CONSTRAINT `Ref_05` FOREIGN KEY (`member_id`)
     REFERENCES `member`(`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;

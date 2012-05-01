@@ -1,0 +1,431 @@
+*{
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-family:"宋体", "Arial Unicode MS", sans-serif;
+}
+   /*the index part*/
+body{
+	
+	margin:0px 0px 0px 0px;
+	padding:0px;
+	text-align:center;
+}
+/*#background{
+	position:relative;
+	margin:0px auto 0px auto;
+    width:1200px;
+}*/
+#container{
+	position:relative;
+	width:100%;
+	min-width:1000px;
+	margin:0px auto 0px auto;
+	padding:0px;
+	background-color:#dbddc1;
+	text-align:center;
+	
+}
+#top1{
+	width:100%;
+	height:40px;
+	background:#729c00;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:100;
+}
+#topsearch{
+	height:40px;
+	background:#729c00;
+	width:900px;
+	position:relative;
+	margin:0px auto 0px auto;
+}
+#top2{
+	width:100%;	
+	background-image:url(blackbar.png);
+	height:100px;
+	margin-top:22px;
+}
+
+#topcontent{
+	height:100px;
+	background-image:url(blackbar.png);
+	width:900px;
+	position:relative;
+	margin:0px auto 0px auto;
+}
+#logo{
+	width:80px;
+	height:70px;	
+	float:left;
+	margin-top:25px;
+	
+}
+#title{
+	float:left;
+}
+div.search{
+	border:0px;
+	position:relative;	
+	float:right;
+}
+div.search table td{
+	padding-left:5px;
+}
+
+#send{
+	width:80px;
+	height:27px;
+	background:url(login.png);
+	border:0px;
+	cursor:pointer;
+}	
+#navigation{
+	width:370px;
+	height:28px;
+	margin-top:73px ;
+	float:right;
+}
+#navigation ul{
+	padding:0;
+	margin:0 ;
+	list-style:none;
+}
+#navigation ul li {
+	font-size:16px;
+	font-family:"微软雅黑";
+    color:#ffffff;
+	text-decoration:none; 
+	position:relative;
+	float:left;
+	width:90px;
+	height:26px;/*控制导航条高度*/
+	display:block;
+}
+#navigation ul li a{
+	color:#c4bdbc;
+	 text-decoration:none; 
+	 width:80px;
+	 font-family:"微软雅黑";
+	 }
+.thread:hover{
+	border-right:#c4bdbc 1px solid; 
+}
+.thread{
+	border-right:#938a87 1px solid; 
+}
+*#navigation ul li a:hover{
+	color:#a1d602;
+/*	border-bottom:#729c00 2px solid;
+*/ 
+   }
+   #navigation ul li:hover{
+	background:url(blackblock.png); 
+/*	border-bottom:#a1d602 2px solid; */ 
+	color:#edf501; 
+  }
+#mainshow{
+	height:352px;
+	background:#ffffff;
+	text-align:center;
+	border-bottom:#729c00 2px solid;
+}
+#middle{
+	 margin:0px auto 0px auto;
+	 width:1000px;
+	 height:350px; 
+	 overflow:hidden; 
+	 clear:both;
+	 }
+
+#index_article{
+	width:960px;
+	height:350px;
+	text-align:left;
+	margin:0px auto 0px auto;
+	background:#FFFFFF;
+}
+
+#index_article ul{
+	padding:0;
+	margin:10px auto 0 60px;
+	list-style:none;
+	line-height:30px;
+	text-align:left; 
+}
+#index_article ul li a{
+	color:#333;
+	font-size:16px;
+	font-family:"宋体";
+	font-weight:bold;
+	text-decoration:none;
+	padding:10px auto 0px 10px;
+}
+#index_article ul li a:hover{
+	color:#060;
+	text-decoration:underline;
+}
+.news{
+	text-align:left;
+	width:330px;
+	height:350px;
+	border-right:#dbddc1 1px solid;
+	float:left;
+}
+.news:hover{
+background:url(greenbar.png);
+}
+.share:hover{
+background:url(greenbar.png);
+}
+.news img{
+	margin:20px auto 10px 50px;
+}
+.share{
+	text-align:left;
+	width:627px;
+	height:350px;
+	float:left;
+}	
+.share img{
+	margin:20px auto 10px 50px;
+}
+
+
+/*the sub part*/
+#article{
+	margin:0 auto 0 auto;
+	position:relative;
+	width:1024px;
+	width:960px;
+	padding-top:36px;
+}
+#left_nav{
+	float:left;
+	width:256px;
+}
+#left_nav h3{
+	margin:0;
+	padding:0;
+	padding-top:20px;
+	width:239px;
+	height:69px;
+	background:url("top_navbackground.gif") no-repeat;
+	font-family:"微软雅黑", "宋体", sans-serif;
+	font-size:19px;
+	color:#fff;
+}
+#left_nav ul{
+	padding:0;
+	margin:0;
+	background:url(center_navbackground.gif) repeat-y;
+	width:239px;
+	list-style:none;
+	height:194px;
+}
+
+#left_nav li a{
+	display:block;
+	padding-left:45px;
+	padding-bottom:8px;
+	width:150px;
+	font-size:17px;
+	color:#949494;
+	text-decoration:none;
+	text-align:left;
+	
+}
+#left_nav li a:hover{
+	color:#000;
+	background:url(flower.png) no-repeat 150px 2px;
+}
+#left_nav li img{
+	padding-left:10px;
+	display:none;
+}
+#left_navfoot{
+	width:239px;
+	height:30px;
+	background:url(foot_navbackground.gif) no-repeat;
+}
+#right_information{
+	float:left;
+	width:748px;
+	width:684px;
+	padding-left:20px;
+	padding-top:5px;
+	padding-bottom:43px;
+}
+#right_information h3{
+	width:137px;
+	height:31px;
+	background:url(site.png) no-repeat 1% 2%;
+	padding-top:0px;
+	float:left;
+	font-family:"黑体", "宋体", sans-serif;
+}
+#right_information table{
+	float:right;
+	font-size:13px;
+	color:#5a5b5a;
+}
+#right_information table img{
+	border:0;
+}
+#right_information table td{
+	padding-left:9px;
+	padding-right:9px;
+}
+#right_information table td a{
+	color:#5a5b5a;
+	text-decoration:none;
+}
+#right_information table td a:hover{
+	text-decoration:underline;
+}
+#personal_information , #modify_information,#modify_password,#finished_projects,#unfinished_projects,#personal_list{
+	clear:both;
+	padding-top:30px;
+	overflow:hidden;
+}
+#personal_information img,#detail_information img{
+	float:left;
+	width:137px;
+	height:157px;
+	background:#000;
+}
+#personal_information div.center,#detail_information div.center{
+	float:left;
+	padding-left:28px;
+}
+#personal_information div.message,#modify_information div.message,#modify_password div.message,#detail_information div.message{
+	padding-bottom:10px;
+}
+#personal_information div.message h2,#modify_information div.message h2,#modify_password div.message h2,#detail_information div.message h2{
+	border-bottom:#84b600 solid 2px;
+	text-align:left;
+	width:540px;
+	margin-bottom:5px;
+}
+#personal_information div.message h2,#detail_information div.message h2{
+	width:519px;
+}
+#modify_information div.message table,#modify_password div.message table,#personal_information div.message table,#detail_information div.message table{
+	font-size:16px;
+	float:none;
+	color:#000;
+}
+#modify_information div.message table td,#modify_password div.message table td,#personal_information div.message table td,#detail_information div.message table td{
+	padding:2px 0;
+	text-align:left;
+}
+#modify_information div.message table i{
+	color:red;
+	font-style:normal;
+}
+#modify_information div.center,#modify_password div.center,#finished_projects div.center,#unfinished_projects div.center,#personal_list div.center{
+	text-align:left;
+	float:left;
+	padding-bottom:20px;
+}
+#modify_information div.message table td input,#modify_password div.message table td input{
+	text-align:left;
+	font-size:16px;
+}
+#modify_information .button,#modify_password .button{
+	background:url(save.png) repeat-x;
+	width:51.51px;
+	height:28px;
+	border:0px;
+	cursor:pointer;
+	color:#f5f97f;
+	font-size:14px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+#finished_projects div.project,#unfinished_projects div.project{
+	width:616px;
+	border:#99c944 solid 2px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-box-shadow:2px 3px 4px #b4bea3;
+	-webkit-box-shadow:2px 3px 4px #b4bea3;
+	padding:25px;
+	margin-bottom:20px;
+	background:#fff;
+}
+#finished_projects div.project img,#unfinished_projects div.project img{
+	width:119px;
+	height:142px;
+	float:left;
+	background:#993;
+}
+#finished_projects div.project div.list,#unfinished_projects div.project div.list{
+	padding-left:20px;
+	float:left;
+	text-align:left;
+}
+#finished_projects div.project div p,#unfinished_projects div.project div p{
+	padding-bottom:20px;
+	text-align:left;
+}
+#unfinished_projects div.project .button{
+	background:url(week.png);
+	width:87.5px;
+	height:33.5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border:solid #608c03 1px;
+	cursor:pointer;
+}
+#personal_list div.center{
+	padding-left:16px;
+	padding-right:16px;
+	padding-bottom:0px;
+}
+#personal_list div.center div.person{
+	width:171px;
+	margin-left:21px;
+	margin-right:21px;
+	margin-bottom:20px;
+	float:left;
+	border:#99c944 solid 2px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-box-shadow:2px 3px 4px #b4bea3;
+	-webkit-box-shadow:2px 3px 4px #b4bea3;
+	text-align:center;
+	padding:14px 0;
+}
+#personal_list div.center div.person img{
+	width:120px;
+	height:140px;
+	background:#FCF;
+}
+#finished_projects div.project .clear,#unfinished_projects div.project .clear,#personal_list div.clear{
+	clear:both;
+}
+#detail_information{
+	width:684px;
+	height:376px;
+	border:#99c944 solid 2px;
+	border-radius:4px;
+	padding:5px 5px 0px 5px;
+	
+}
+#foot{
+	clear:both;
+	height:50px;
+	background:#729c00;
+	margin:0px auto 0px auto;
+}
+#foot p{
+	font-size:16px;
+	font-family:"宋体";
+	color:#000;
+	margin:0px auto auto auto;
+}

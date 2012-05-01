@@ -14,3 +14,11 @@ select count(id) from member where id not in(select member_id from department_me
 /* member.projects */
 select * from project where id in (select pm.project_id from project_member as pm where pm.member_id= @memberId ) and state= @state
 
+/* member.password.add */
+INSERT INTO password (member_id, password) VALUES (@memberId , @password)
+
+/* member.password.update */
+update password set password = @password where member_id = @memberId 
+
+/* member.password.get*/
+select password from password where member_id = @memberId 

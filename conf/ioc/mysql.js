@@ -8,7 +8,7 @@ var ioc = {
 			driverClassName : 'com.mysql.jdbc.Driver',
 			url : 'jdbc:mysql://localhost:3306/official?characterEncoding=UTF-8',
 			username : 'root',
-			password : '123456'
+			password : '12345'
 		}
 	},
 	fileSqlManager:{

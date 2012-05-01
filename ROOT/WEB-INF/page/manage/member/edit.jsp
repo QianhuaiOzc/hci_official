@@ -63,10 +63,8 @@
 			</div>
 
 			<div>
-				<label>性别：</label> 男<input type="radio" name="extend.sex" value="0"
-					${extend.sex==0 ?"checked='checked'":"" }  >&nbsp; 女<input
-					type="radio" name="extend.sex" value="1" ${extend.sex==0
-					?"checked='checked'":"" }  >
+				<label>性别：</label> 男<input type="radio" name="extend.sex" value="0" ${extend.sex==0 ?"checked='checked'":"" }  >&nbsp; 女<input
+					type="radio" name="extend.sex" value="1" ${extend.sex==1 ?"checked='checked'":"" }  >
 			</div>
 
 			<div>
