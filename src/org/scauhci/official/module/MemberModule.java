@@ -54,7 +54,7 @@ public class MemberModule {
 
 	@At("/member/edit/?")
 	@Ok("jsp:page.manage.member.edit")
-	public void toEidt(int id, HttpServletRequest req) {
+	public void toEdit(int id, HttpServletRequest req) {
 		Member member = memberService.getMember(id);
 		MemberExtend me = member.getExtend();
 		DepartmentMember dm = departmentService.getDepartmentMember(member.getId());
@@ -68,7 +68,7 @@ public class MemberModule {
 	@At("/member/?")
 	@Ok("json")
 	@Aop("transactionInterceptor")
-	public Map<String, Object> eidt(int id, @Param("::member.") final Member member,
+	public Map<String, Object> edit(int id, @Param("::member.") final Member member,
 			@Param("::extend.") final MemberExtend me,
 			@Param("::departmentMember.") final DepartmentMember dm,
 			HttpServletRequest req) {
