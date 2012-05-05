@@ -17,7 +17,7 @@ import org.nutz.mvc.annotation.Ok;
 public class FrontModule {
 	
 	@At("/index")
-	@Ok("")
+	@Ok("jsp:page.front.index")
 	public Map<String, Object> index() {
 		return null;
 	}

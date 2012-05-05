@@ -10,7 +10,7 @@
 <body>
 	<h1>All Members</h1>
 	<hr />
-	<form action="/meeting/new/members" method="post">
+	<form action="/meeting/add/members" method="post">
 		<table>
 			<c:forEach items="${obj.members }" var="member">
 				<tr>

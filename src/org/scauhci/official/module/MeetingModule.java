@@ -54,7 +54,7 @@ public class MeetingModule {
 		return resultMap;
 	}
 
-	@At("/new/projects")
+	@At("/add/projects")
 	@POST
 	@Ok("jsp:page.manage.meeting.new_meeting_add_members")
 	public Map<String, Object> addProjectsToNewMeeting(
@@ -69,7 +69,7 @@ public class MeetingModule {
 		return resultMap;
 	}
 
-	@At("/new/members")
+	@At("/add/members")
 	@POST
 	@Ok("redirect:/meeting/list")
 	@Aop("transactionInterceptor")

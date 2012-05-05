@@ -44,7 +44,7 @@ public class MemberModule {
 	@Inject
 	DepartmentService departmentService;
 
-	MemberLucene memberLucene=MemberLucene.getInstance();
+//	MemberLucene memberLucene=MemberLucene.getInstance();
 
 	@At("/member/new")
 	@Ok("jsp:page.manage.member.add")
@@ -280,9 +280,11 @@ public class MemberModule {
 	
 	@At("/login")
 	@Ok("json")
-	public Map<String, Object> login(String account, String password, HttpSession session) {
+	public Map<String, Object> login(@Param("username") String account, @Param("password") String password, HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		Member member = memberService.fetch(Cnd.where("student_id", "=", account).and("password", "=", password));
+		System.out.println("account: " + account + "\npassword: " + password);
+		Member member = memberService.authentication(account, password);
+		System.out.println(member);
 		if(member == null) {
 			result.put("state", 300);
 		} else {
@@ -303,8 +305,8 @@ public class MemberModule {
 	@Ok("jsp:page.manage.member.list")
 	public Map<String, Object> search(@Param("wd") String s, @Param("page") int page){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", memberLucene.searchIndex(s,memberService.dao().createPager(page,Config.MANAGER_PAGE_SIZE)));
-		map.put("count", memberLucene.countSearchIndex(s));
+//		map.put("list", memberLucene.searchIndex(s,memberService.dao().createPager(page,Config.MANAGER_PAGE_SIZE)));
+//		map.put("count", memberLucene.countSearchIndex(s));
 		map.put("size", Config.MANAGER_PAGE_SIZE);
 		map.put("page", page);
 		return map;

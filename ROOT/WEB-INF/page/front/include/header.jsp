@@ -5,25 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HCI Meeting-Home</title>
-<script type="text/javascript" src="js/changePic.js"></script>
-<link href="images/index.css" type="text/css" rel="stylesheet" />
+<link href="css/index.css" type="text/css" rel="stylesheet" />
 <link rel="Shortcut Icon" href="images/avicon.png" type="image/x-icon" />
-
 </head>
 <body>
 	<div id="container">
-		<div id="top1">
-			<div id="topsearch">
-				<div class="search">
-					<table cellspacing="0">
-						<tbody>
-							<tr>
-								<td><input id="username" type="text" /></td>
-								<td><input id="password" type="text" /></td>
-								<td><input type="button" id="send" /></td>
-							</tr>
-						</tbody>
-					</table>
+		<div id="topBar" class="topBackground">
+			<div class="forSearch">
+				<div id="loginForm" class="search">
+					<input id="account" class="inputCss" type="text" /> 
+					<input id="password" class="inputCss" type="password" /> 
+					<input type="button" id="loginBtn" />
+				</div>
+				<div id="welcome" class="loginIn" style="display: none;">
+					<p>
+						欢迎您！<a href="#">XXX<a />|<a href="#">消息<a />|<a href="#">相册<a />|<a
+									href="#">个人中心<a />
+					</p>
 				</div>
 			</div>
 		</div>

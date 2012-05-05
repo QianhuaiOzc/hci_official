@@ -5,6 +5,8 @@ import java.util.List;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.Sqls;
+import org.nutz.dao.impl.sql.callback.FetchEntityCallback;
+import org.nutz.dao.impl.sql.callback.FetchIntegerCallback;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -133,4 +135,16 @@ public class MemberService extends BasicMysqlService<Member>{
 		return sql.getString();
 	}
 	
+	public Member authentication(String studentId, String password) {
+		Sql sql = dao().sqls().create("member.authentication");
+		sql.setCallback(new FetchIntegerCallback());
+		sql.params().set("studentId", studentId).set("password", password);
+		dao().execute(sql);
+		Integer memberId = sql.getInt();
+		if (memberId == null) {
+			return null;
+		}
+		Member member = fetch(memberId);
+		return member;
+	}
 }

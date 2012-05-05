@@ -5,33 +5,29 @@ import java.util.List;
 import org.nutz.dao.entity.annotation.*;
 
 @Table("member")
-public class Member implements java.io.Serializable{
+public class Member implements java.io.Serializable {
 
 	// 在职
 	public static final int STATE_ON_THE_JOB = 1;
 	// 毕业
 	public static final int STATE_GRADUATE = 2;
-	//实习
-	public static final int STATE_PROBATIONER=3;
+	// 实习
+	public static final int STATE_PROBATIONER = 3;
 	// 退出
 	public static final int STATE_LEAVE = 4;
-	
 
-	//老师
+	// 老师
 	public static final int TYPE_TEACHER = 1;
-	//研究生
-	public static final int TYPE_GRADUATE_STUDENT=2;
-	//学生
+	// 研究生
+	public static final int TYPE_GRADUATE_STUDENT = 2;
+	// 学生
 	public static final int TYPE_STUDENT = 3;
-	
-	
-	//管理员
-	public static final int ROLE_ADMIN=1;
-	//普通
-	public static final int ROLE_COMMON=0;	
-	
 
-	
+	// 管理员
+	public static final int ROLE_ADMIN = 1;
+	// 普通
+	public static final int ROLE_COMMON = 0;
+
 	@Id
 	@Column("id")
 	private int id;
@@ -49,7 +45,6 @@ public class Member implements java.io.Serializable{
 	private boolean isPublic;
 	@Column("extend_id")
 	private int extendId;
-	
 
 	@ManyMany(target = Project.class, relation = "project_member", from = "member_id", to = "project_id")
 	private transient List<Project> projects;
@@ -79,7 +74,6 @@ public class Member implements java.io.Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public int getState() {
 		return state;

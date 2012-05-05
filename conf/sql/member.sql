@@ -24,4 +24,4 @@ update password set password = @password where member_id = @memberId
 select password from password where member_id = @memberId 
 
 /* member.authentication */
-select 
+select member_id FROM password WHERE student_id=@studentId AND password=@password

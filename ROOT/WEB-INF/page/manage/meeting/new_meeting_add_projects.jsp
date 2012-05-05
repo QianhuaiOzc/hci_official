@@ -10,7 +10,7 @@
 <body>
 	<h1>All Projects</h1>
 	<hr />
-	<form action="/meeting/new/projects" method="post">
+	<form action="/meeting/add/projects" method="post">
 		<table>
 			<c:forEach items="${obj.projects }" var="project">
 				<tr>
