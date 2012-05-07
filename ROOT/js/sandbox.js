@@ -221,6 +221,39 @@
 		return $.md5(str);
 	}
 	
+	/**
+	 * set key-value in localStorage
+	 * 
+	 * @param {string} key
+	 * @param {string} value
+	 * 
+	 */
+     SandBox.prototype.setItem = function(key, value) {
+    	 localStorage.setItem(key, value);
+     }
+	
+     /**
+      * get value in localStorage by key
+      * 
+      * @param {string} key
+      * @return {string} value
+      * 
+      */
+     SandBox.prototype.getItem = function(key) {
+    	 return localStorage.getItem(key);
+     }
+     
+     /**
+      * remove item in localStorage by key
+      * 
+      * @param {string} key
+      * @return {string} value
+      * 
+      */
+     SandBox.prototype.removeItem = function(key) {
+    	 localStorage.removeItem(key);
+     }
+	
 	this.SandBox = SandBox;
 	
 })(jQuery);

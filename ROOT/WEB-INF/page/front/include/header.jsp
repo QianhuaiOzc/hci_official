@@ -19,8 +19,8 @@
 				</div>
 				<div id="welcome" class="loginIn" style="display: none;">
 					<p>
-						欢迎您！<a href="#">XXX<a />|<a href="#">消息<a />|<a href="#">相册<a />|<a
-									href="#">个人中心<a />
+						欢迎您！<span id="name"></span>|<a href="#">消息</a>|<a href="#">相册</a>|<a
+									href="#">个人中心</a>|<a href="#">注销</a>
 					</p>
 				</div>
 			</div>

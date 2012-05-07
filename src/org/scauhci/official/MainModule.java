@@ -3,20 +3,15 @@
  */
 package org.scauhci.official;
 
-import org.nutz.ioc.loader.annotation.Inject;
-import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Encoding;
 import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.IocBy;
 import org.nutz.mvc.annotation.Modules;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.SetupBy;
 import org.nutz.mvc.annotation.Views;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 import org.nutz.web.ajax.AjaxViewMaker;
 import org.scauhci.official.mvc.SmartViewMaker;
-import org.scauhci.official.service.MemberService;
 
 /**
  * @author clarenceau

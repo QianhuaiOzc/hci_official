@@ -5,7 +5,8 @@ Core.registerModule("topBar", function(sandBox) {
 	
 	var container = null;
 	var loginForm = null, welcomeDiv = null;
-	var accountDiv = null, passwordDiv = null, loginBtn = null;
+	var accountDiv = null, passwordDiv = null, loginBtn = null, nameDiv = null;
+	var cookie = null;
 	
 	var events = {
 		login: function(evt) {
@@ -23,15 +24,18 @@ Core.registerModule("topBar", function(sandBox) {
 					console.log(JSON.stringify(data));
 					var state = data.state;
 					if (state === 200) {
+						sandBox.hide(loginForm);
+						sandBox.show(welcomeDiv);
+						cookie = data.member;
+						sandBox.setItem("cookie", JSON.stringify(data.member));
+						nameDiv.innerText = data.member.name;
 					} else {
-
 					}
 				},
 				error : function(jqXHR) {
 
 				}
 			});
-//			console.log("account: " + account + " password: " + password + " md5: " + sandBox.md5(password));
 		}
 	};
 	
@@ -44,7 +48,16 @@ Core.registerModule("topBar", function(sandBox) {
 			accountDiv = sandBox.find("#account", loginForm);
 			passwordDiv = sandBox.find("#password", loginForm);
 			loginBtn = sandBox.find("#loginBtn", loginForm);
+			nameDiv = sandBox.find("#name", welcomeDiv);
 			loginBtn.onclick = events.login;
+			
+			var cookieStr = sandBox.getItem("cookie");
+			if(cookieStr) {
+				cookie = JSON.parse(cookieStr);
+				sandBox.hide(loginForm);
+				sandBox.show(welcomeDiv);
+				nameDiv.innerText = cookie.name;
+			}
 		},
 		destroy: function() {}
 	};
