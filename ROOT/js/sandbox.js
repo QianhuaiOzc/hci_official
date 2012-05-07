@@ -169,11 +169,11 @@
 
 	SandBox.prototype.css = function(elem, name, value) {
 		$(elem).css(name, value);
-	}
+	};
 
 	SandBox.prototype.touchable = function() {
 		return ($.support.touch);
-	}
+	};
 	/**
 	 * get cookie by name
 	 * 
@@ -208,10 +208,43 @@
 	};
 	
 	/**
+	 * ajax post
+	 * 
+	 * @param {string} url
+	 * @param {object} data
+	 * @param {function} successCallback
+	 * @param {function} failCallback
 	 * 
 	 */
-	SandBox.prototype.ajax = function(options) {
-		$.ajax(options);
+	SandBox.prototype.post = function(url, data, successCallback, failCallback) {
+		$.ajax({
+			url : url,
+			type : "post",
+			dataType : "json",
+			data : data,
+			success : successCallback,
+			error : failCallback
+		});
+	};
+	
+	/**
+	 * ajax get
+	 * 
+	 * @param {string} url
+	 * @param {object} data
+	 * @param {function} successCallback
+	 * @param {function} failCallback
+	 * 
+	 */
+	SandBox.prototype.get = function(url, data, successCallback, failCallback) {
+		$.ajax({
+			url : url,
+			type : "get",
+			dataType : "json",
+			data : data,
+			success : successCallback,
+			error : failCallback
+		});
 	};
 	
 	/**
@@ -219,7 +252,7 @@
 	 */
 	SandBox.prototype.md5 = function(str) {
 		return $.md5(str);
-	}
+	};
 	
 	/**
 	 * set key-value in localStorage
@@ -230,7 +263,7 @@
 	 */
      SandBox.prototype.setItem = function(key, value) {
     	 localStorage.setItem(key, value);
-     }
+     };
 	
      /**
       * get value in localStorage by key
@@ -241,7 +274,7 @@
       */
      SandBox.prototype.getItem = function(key) {
     	 return localStorage.getItem(key);
-     }
+     };
      
      /**
       * remove item in localStorage by key
@@ -252,7 +285,7 @@
       */
      SandBox.prototype.removeItem = function(key) {
     	 localStorage.removeItem(key);
-     }
+     };
 	
 	this.SandBox = SandBox;
 	

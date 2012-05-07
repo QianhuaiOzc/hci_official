@@ -20,7 +20,7 @@
 				<div id="welcome" class="loginIn" style="display: none;">
 					<p>
 						欢迎您！<span id="name"></span>|<a href="#">消息</a>|<a href="#">相册</a>|<a
-									href="#">个人中心</a>|<a href="#">注销</a>
+									href="#">个人中心</a>|<a href="javascript:void(0);" id="logout">注销</a>
 					</p>
 				</div>
 			</div>
