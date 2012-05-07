@@ -5,6 +5,9 @@ import org.nutz.dao.entity.annotation.*;
 @Table("member_message")
 public class MemberMessage {
 
+	public static final int STATE_HAS_READED = 1;
+	public static final int STATE_NOT_READ = 0;
+	
 	@Id
 	@Column("id")
 	private int id;

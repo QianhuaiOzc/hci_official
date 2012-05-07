@@ -1,12 +1,5 @@
 (function($) {
-	var globalData = {
-		shapeFinished: 0,
-		pictureFinished: 0,
-		fillFinished: false,
-		guessFinished: true,
-		blackboardFinished: false,
-		level: 1
-	};
+	var globalData = {};
 
 	var SandBox = function(core, moduleName) {
 		if(!moduleName) {
@@ -216,14 +209,14 @@
 	 * @param {function} failCallback
 	 * 
 	 */
-	SandBox.prototype.post = function(url, data, successCallback, failCallback) {
+	SandBox.prototype.post = function(url, data, successCallback) {
 		$.ajax({
 			url : url,
 			type : "post",
 			dataType : "json",
 			data : data,
 			success : successCallback,
-			error : failCallback
+			error : this.core.log
 		});
 	};
 	
@@ -236,14 +229,14 @@
 	 * @param {function} failCallback
 	 * 
 	 */
-	SandBox.prototype.get = function(url, data, successCallback, failCallback) {
+	SandBox.prototype.get = function(url, data, successCallback) {
 		$.ajax({
 			url : url,
 			type : "get",
 			dataType : "json",
 			data : data,
 			success : successCallback,
-			error : failCallback
+			error : this.core.log
 		});
 	};
 	

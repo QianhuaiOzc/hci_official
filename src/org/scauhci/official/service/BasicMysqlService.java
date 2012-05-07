@@ -1,16 +1,28 @@
 package org.scauhci.official.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
+import org.nutz.dao.impl.sql.callback.FetchIntegerCallback;
 import org.nutz.dao.pager.Pager;
+import org.nutz.dao.sql.Sql;
+import org.nutz.lang.Mirror;
+import org.nutz.lang.Strings;
 import org.nutz.service.IdEntityService;
 
 public class BasicMysqlService<T> extends IdEntityService<T> {
 	
+	private String prefix;
+	private Mirror<T> mirror = null;
+	
 	public BasicMysqlService(Dao dao) {
         super(dao);
+        Class<T> entityClass = Mirror.getTypeParam(getClass(), 0);
+        mirror = Mirror.me(entityClass);
+        int begin = mirror.toString().lastIndexOf('.');
+        prefix  = Strings.lowerFirst(mirror.toString().substring(begin + 1)) + ".";
     }
 	
 	public T add(T t) {
@@ -78,7 +90,14 @@ public class BasicMysqlService<T> extends IdEntityService<T> {
         return dao().deleteWith(obj, regex);
     }
     
-    
+    protected int fetchInt(Map<String, Object> params) {
+    	String sqlKey = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	Sql sql = dao().sqls().create(prefix + sqlKey);
+    	sql.setCallback(new FetchIntegerCallback());
+    	sql.params().putAll(params);
+    	dao().execute(sql);
+    	return sql.getInt();
+    }
     
     
 }

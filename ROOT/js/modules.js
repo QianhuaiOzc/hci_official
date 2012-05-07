@@ -5,8 +5,9 @@ Core.registerModule("topBar", function(sandBox) {
 	
 	var container = null;
 	var loginForm = null, welcomeDiv = null;
-	var accountDiv = null, passwordDiv = null, loginBtn = null, nameDiv = null, logoutBtn = null;
+	var accountDiv = null, passwordDiv = null, loginBtn = null, nameDiv = null, logoutBtn = null, messageDiv = null;
 	var cookie = null;
+	var queryId = null;
 	
 	var showLoginForm = function() {
 		sandBox.hide(welcomeDiv);
@@ -24,19 +25,16 @@ Core.registerModule("topBar", function(sandBox) {
 			var account = accountDiv.value;
 			var password = sandBox.md5(passwordDiv.value);
 			sandBox.post("login.nut", {"username": account, "password": password, }, 
-					function(data) {
-						var state = data.state;
-						if (state === 200) {
-							cookie = data.member;
-							sandBox.setItem("cookie", JSON.stringify(data.member));
-							showInfoDiv();
-						} else {
-							alert("Error, " + JSON.stringify(data));
-						}
-					},
-					function(jqXHR) {
+				function(data) {
+					var state = data.state;
+					if (state === 200) {
+						cookie = data.member;
+						sandBox.setItem("cookie", JSON.stringify(data.member));
+						showInfoDiv();
+					} else {
 						alert("Error, " + JSON.stringify(data));
 					}
+				}
 			);
 		},
 		
@@ -44,6 +42,22 @@ Core.registerModule("topBar", function(sandBox) {
 			showLoginForm();
 			sandBox.removeItem("cookie");
 			cookie = null;
+		},
+		
+		queryNewMessage: function() {
+			sandBox.get("message/query", {"studentId": cookie.studentId},
+				function(data) {
+					if("object" === typeof data) {
+						clearInterval(queryId);
+					} else {
+						if(data == 0) {
+							messageDiv.innerText = "消息";
+						} else {
+							messageDiv.innerText = "你有" + data + "条新的未读消息";
+						}
+					}
+				}
+			);
 		}
 	};
 	
@@ -58,6 +72,7 @@ Core.registerModule("topBar", function(sandBox) {
 			loginBtn = sandBox.find("#loginBtn", loginForm);
 			nameDiv = sandBox.find("#name", welcomeDiv);
 			logoutBtn = sandBox.find("#logout", welcomeDiv);
+			messageDiv = sandBox.find("#message", welcomeDiv);
 			loginBtn.onclick = events.login;
 			logoutBtn.onclick = events.logout;
 			
@@ -66,6 +81,8 @@ Core.registerModule("topBar", function(sandBox) {
 				cookie = JSON.parse(cookieStr);
 				showInfoDiv();
 			}
+			
+			queryId = setInterval(events.queryNewMessage, 5000);
 		},
 		destroy: function() {
 			cookie = null;
